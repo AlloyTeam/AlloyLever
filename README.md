@@ -1,4 +1,4 @@
-![preview](http://dnt.coding.me/demo/dev_tool/src/img/alloylever.png)
+![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever.png)
 
 Mobile Web Developer Tool
 
