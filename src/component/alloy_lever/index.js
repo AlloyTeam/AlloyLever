@@ -17,7 +17,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                 var xhr = new XHR();
                 checkSuccess(xhr);
                 return xhr;
-            }
+            };
 
             window.XMLHttpRequest.realXHR = XHR;
 
@@ -51,9 +51,9 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                 }
 
                 for (i = 0, len = jsList.length; i < len; i++) {
-                    var src = jsList[i].getAttribute('src');
-                    if(src) {
-                        this.checkJSorCSS(src)
+                    var url = jsList[i].getAttribute('src');
+                    if(url) {
+                        this.checkJSorCSS(url)
                     }
                 }
 
@@ -69,9 +69,9 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
         },
         checkImg: function (src) {
             var img = new Image();
-            img.onerror=function(msg,b,c){
+            img.onerror=function(){
                 console.error(src+' 404 (Not Found)')
-            }
+            };
             img.src = src;
         },
         checkJSorCSS: function (src) {
@@ -123,7 +123,9 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
             //timing.printSimpleTable();
             var data = timing.printSimpleTable();
             for (var key in data) {
-                this.option.timeline.push({msg: key + ': ' + Math.round(data[key])});
+                if(data.hasOwnProperty(key)) {
+                    this.option.timeline.push({msg: key + ': ' + Math.round(data[key])});
+                }
             }
         },
         touchStart:function(evt){
@@ -142,7 +144,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                     var dy = evt.touches[0].pageY - this.preY;
                     this.option.tx += dx;
                     this.option.ty += dy;
-                    this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)'
+                    this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
                     this.preX = evt.touches[0].pageX;
                     this.preY = evt.touches[0].pageY;
                     event.preventDefault();
@@ -151,7 +153,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
             window.addEventListener('touchend', function (evt) {
                 this.isTouchStart = false;
-                if (Math.abs(evt.changedTouches[0].pageX - this.startX) < 30 & Math.abs(evt.changedTouches[0].pageY - this.startY) < 30) {
+                if (Math.abs(evt.changedTouches[0].pageX - this.startX) < 30 && Math.abs(evt.changedTouches[0].pageY - this.startY) < 30) {
                     this.toogle();
                 }
                 this.removeClass(this.atEntry,'at-entry-active');
@@ -360,4 +362,4 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
     })(this);
 
     window.AlloyLever= AlloyLever;
-})
+});

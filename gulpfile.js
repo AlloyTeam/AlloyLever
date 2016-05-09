@@ -85,6 +85,10 @@ gulp.task('copyCss', function () {
     return gulp.src('src/css/*css').pipe(gulp.dest('dev/css'));
 });
 
+gulp.task('copyImg', function () {
+    return gulp.src('src/img/**').pipe(gulp.dest('dev/img'));
+});
+
 //http://www.tuicool.com/articles/rQvUbu2
 gulp.task('default',  function (taskDone) {
     runSequence(
@@ -94,6 +98,7 @@ gulp.task('default',  function (taskDone) {
         'fixUtil',
         'copyCss',
         'concat',
+        'copyImg',
         taskDone
     );
 });
