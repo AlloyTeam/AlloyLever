@@ -8,6 +8,7 @@ Mobile Web Developer Tool
 
 * Click the AlloyLever button to toggle between showing or hiding the tool panel
 * Output all the log by console.[log|info|warn|debug|error] in the Console tab
+* Output all the error info in the Console tab
 * Output all the XMLHttpRequest's requests in the XHR tab
 * Output all the Cookie info and LocalStorage info in the Resources tab
 * Output all the timing of website's Life Cycle in the Timeline tab
