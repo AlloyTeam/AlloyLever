@@ -1,6 +1,14 @@
-![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever.png)
+# AlloyLever Preview
 
 Mobile Web Developer Tool
+
+![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
+
+# Demo
+
+[http://alloyteam.github.io/AlloyLever/](http://alloyteam.github.io/AlloyLever/)
+
+
 
 # Install
 
