@@ -15,6 +15,8 @@ Mobile Web Developer Tool
 
 # Demo
 
+![demo](http://alloyteam.github.io/AlloyLever/asset/al.png)
+
 [http://alloyteam.github.io/AlloyLever/](http://alloyteam.github.io/AlloyLever/)
 
 
