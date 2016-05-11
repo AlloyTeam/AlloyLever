@@ -2926,8 +2926,8 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
         install: function () {
             this.initConsole();
             this.initError();
-            this.initTimeline();
             this.initXHR();
+
             this.initNetWork();
             this.initCookie();
             this.initStorage();
@@ -2961,34 +2961,33 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
         },
         initNetWork: function () {
-            window.onload = function () {
+            window.addEventListener('load', function () {
+                this.initTimeline();
                 var cssList = document.querySelectorAll('link[rel="stylesheet"]');
                 var jsList = document.querySelectorAll('script');
                 var imgList = document.querySelectorAll('img');
 
                 for (var i = 0, len = cssList.length; i < len; i++) {
-                    var href=cssList[i].getAttribute('href');
-                    if(href) {
+                    var href = cssList[i].getAttribute('href');
+                    if (href) {
                         this.checkJSorCSS(href);
                     }
                 }
 
                 for (i = 0, len = jsList.length; i < len; i++) {
                     var url = jsList[i].getAttribute('src');
-                    if(url) {
+                    if (url) {
                         this.checkJSorCSS(url)
                     }
                 }
 
                 for (i = 0, len = imgList.length; i < len; i++) {
                     var src = imgList[i].getAttribute('src');
-                    if(src) {
+                    if (src) {
                         this.checkImg(src)
                     }
                 }
-
-
-            }.bind(this)
+            }.bind(this));
         },
         checkImg: function (src) {
             var img = new Image();
@@ -3164,15 +3163,26 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
     window.AlloyLever= AlloyLever;
 });
 })();
-new AlloyLever({
-    hide:true,
-    reportTo:'xxx',
-    height:'55%',
-    index:1,
-    logs:[],
-    tx:0,
-    ty:0,
-    timeline:[],
-    xhrs:[],
-    resources:{cookie:'',storage:''}
-},'body');
+(function(){
+    try {
+        if(!document.body){
+            alert('please put the alloylever script reference between <body> and </body>');
+            return;
+        }
+        new AlloyLever({
+            hide: true,
+            reportTo: 'xxx',
+            height: '55%',
+            index: 1,
+            logs: [],
+            tx: 0,
+            ty: 0,
+            timeline: [],
+            xhrs: [],
+            resources: {cookie: '', storage: ''}
+        }, 'body');
+    }catch(e) {
+        alert(e);
+    };
+
+})()
