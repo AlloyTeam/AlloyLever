@@ -151,6 +151,11 @@
 
     .at-item-log .at-url{
         color:lightseagreen;
+
+    }
+
+    .at-url span{
+        color:lightseagreen;
         font-weight: bold;
     }
 </style>
@@ -172,6 +177,8 @@
         <div class="at-logs {{content2}}">
             {{#xhrs}}
                 <div class="at-item at-item-log">
+                    <div class="at-url"><span>[Request Url]</span><br/>{{rqsUrl}}</div>
+                    <div class="at-url"><span>[Response Url]</span><br/>{{rspUrl}}</div>
                     <div class="at-url">{{url}}</div>
                     <pre class="at-json"><code>{{json}}</code></pre>
                 </div>
