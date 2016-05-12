@@ -2934,12 +2934,6 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
         },
         initXHR:function(){
-            (function(send){
-                window.XMLHttpRequest.prototype.send=function(){
-                    this.alloyLeverCanCheck=true;
-                    send.apply(this,arguments);
-                }
-            })(window.XMLHttpRequest.prototype.send)
 
             var XHR = window.XMLHttpRequest;
 
@@ -2954,24 +2948,33 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
             var self=this;
 
             function checkSuccess(xhr) {
-                if( xhr.alloyLeverCanCheck){
+                var isAvailable = true;
+                try {
+                    var xx = xhr.status;
+                } catch (e) {
+                    isAvailable = false;
+                }
+                ;
+                if (isAvailable) {
                     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        self.option.xhrs.push({url:xhr.responseURL, json:JSON.stringify(JSON.parse( xhr.responseText), null, "\t")})
-                    }else if(xhr.status>=400) {
-                        console.error(xhr.responseURL +' '+xhr.status+' ('+xhr.statusText+')')
+                        self.option.xhrs.push({
+                            url: xhr.responseURL,
+                            json: JSON.stringify(JSON.parse(xhr.responseText), null, "\t")
+                        })
+                    } else if (xhr.status >= 400) {
+                        console.error(xhr.responseURL + ' ' + xhr.status + ' (' + xhr.statusText + ')')
                     }
-                    else{
+                    else {
                         window.setTimeout(function () {
                             checkSuccess(xhr);
                         }, 0);
                     }
-                }else{
+                } else {
                     window.setTimeout(function () {
                         checkSuccess(xhr);
                     }, 0);
                 }
             }
-
         },
         initNetWork: function () {
             window.addEventListener('load', function () {
