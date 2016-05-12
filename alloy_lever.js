@@ -2766,6 +2766,11 @@ App.componentRes['component/alloy_lever/index.html'] =
 \
     .at-item-log .at-url{\
         color:lightseagreen;\
+\
+    }\
+\
+    .at-url span{\
+        color:lightseagreen;\
         font-weight: bold;\
     }\
 </style>\
@@ -2787,6 +2792,8 @@ App.componentRes['component/alloy_lever/index.html'] =
         <div class="at-logs {{content2}}">\
             {{#xhrs}}\
                 <div class="at-item at-item-log">\
+                    <div class="at-url"><span>[Request Url]</span><br/>{{rqsUrl}}</div>\
+                    <div class="at-url"><span>[Response Url]</span><br/>{{rspUrl}}</div>\
                     <div class="at-url">{{url}}</div>\
                     <pre class="at-json"><code>{{json}}</code></pre>\
                 </div>\
@@ -2934,6 +2941,12 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
         },
         initXHR:function(){
+            (function(open){
+                window.XMLHttpRequest.prototype.open=function(){
+                    this.alloyLeverUrl=arguments[1];
+                    open.apply(this,arguments);
+                }
+            })(window.XMLHttpRequest.prototype.open)
 
             var XHR = window.XMLHttpRequest;
 
@@ -2953,28 +2966,25 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                     var xx = xhr.status;
                 } catch (e) {
                     isAvailable = false;
-                }
-                ;
+                };
                 if (isAvailable) {
                     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        self.option.xhrs.push({
-                            url: xhr.responseURL,
-                            json: JSON.stringify(JSON.parse(xhr.responseText), null, "\t")
-                        })
-                    } else if (xhr.status >= 400) {
-                        console.error(xhr.responseURL + ' ' + xhr.status + ' (' + xhr.statusText + ')')
+                        self.option.xhrs.push({rqsUrl:xhr.alloyLeverUrl,rspUrl:xhr.responseURL, json:JSON.stringify(JSON.parse( xhr.responseText), null, "\t")})
+                    }else if(xhr.status>=400) {
+                        console.error(xhr.responseURL +' '+xhr.status+' ('+xhr.statusText+')')
                     }
-                    else {
+                    else{
                         window.setTimeout(function () {
                             checkSuccess(xhr);
                         }, 0);
                     }
-                } else {
+                }else{
                     window.setTimeout(function () {
                         checkSuccess(xhr);
                     }, 0);
                 }
             }
+
         },
         initNetWork: function () {
             window.addEventListener('load', function () {
