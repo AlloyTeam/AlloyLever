@@ -6,6 +6,8 @@ Mobile Web Developer Tool
 
 ![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
 
+![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever3.png)
+
 # Feature
 
 * Click the AlloyLever button to toggle between showing or hiding the tool panel

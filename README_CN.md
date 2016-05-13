@@ -6,6 +6,8 @@ Mobile Web Developer Tool
 
 ![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
 
+![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever3.png)
+
 # 功能
 
 * 点击alloylever按钮之间切换显示或隐藏工具面板
