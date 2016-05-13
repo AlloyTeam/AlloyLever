@@ -21,6 +21,7 @@ gulp.task('concat', function () {
         'dev/js/nuclear.js',
         'fix/intro.js',
         'dev/js/app.js',
+        'dev/js/timing.js',
         'dev/component/alloy_lever.js',
         'fix/outro.js',
         'fix/init_alloylever.js'

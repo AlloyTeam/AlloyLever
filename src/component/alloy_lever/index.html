@@ -158,6 +158,10 @@
         color:lightseagreen;
         font-weight: bold;
     }
+
+    .at-sub-dt{
+        text-indent :20px;
+    }
 </style>
 
 <div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px)">AlloyLever</div>
@@ -177,9 +181,15 @@
         <div class="at-logs {{content2}}">
             {{#xhrs}}
                 <div class="at-item at-item-log">
-                    <div class="at-url"><span>[Request Url]</span><br/>{{rqsUrl}}</div>
-                    <div class="at-url"><span>[Response Url]</span><br/>{{rspUrl}}</div>
-                    <div class="at-url">{{url}}</div>
+                    <div class="at-url"><div></div><span>[Request Url]</span></div>
+                    <div class="at-sub-dt"><span>{{method}}</span>: {{rqsUrl}}</div>
+                </div>
+                <div class="at-item at-item-log">
+                    <div  class="at-url"><span>[Response Url]</span></div>
+                   <div class="at-sub-dt">{{rspUrl}}</div>
+                </div>
+                <div class="at-item at-item-log">
+                    <div  class="at-url"><span>[Response Data]</span></div>
                     <pre class="at-json"><code>{{json}}</code></pre>
                 </div>
             {{/xhrs}}
