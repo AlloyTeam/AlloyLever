@@ -1,3 +1,5 @@
+English | [¼òÌåÖÐÎÄ](./README_CN.md)
+
 ![preview](asset/alloylever.png)
 
 Mobile Web Developer Tool
