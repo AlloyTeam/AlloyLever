@@ -1,3 +1,5 @@
+English | [¼òÌåÖÐÎÄ](./README_CN.md)
+
 # AlloyLever Preview
 
 Mobile Web Developer Tool
