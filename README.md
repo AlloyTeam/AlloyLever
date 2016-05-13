@@ -1,4 +1,4 @@
-English | [¼òÌåÖĞÎÄ](./README_CN.md)
+ï»¿English | [ç®€ä½“ä¸­æ–‡](./README_CN.md)
 
 # AlloyLever Preview
 
