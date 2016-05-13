@@ -1,8 +1,10 @@
 [English](./README.md) | 简体中文
 
-![preview](asset/alloylever.png)
+# AlloyLever
 
 Mobile Web Developer Tool
+
+![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
 
 # 功能
 
