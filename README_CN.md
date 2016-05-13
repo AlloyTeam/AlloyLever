@@ -1,4 +1,4 @@
-[English](http://alloyteam.github.io/AlloyLever) | 简体中文
+[English](https://github.com/AlloyTeam/AlloyLever) | 简体中文
 
 # AlloyLever
 
