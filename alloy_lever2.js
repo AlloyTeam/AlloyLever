@@ -3145,12 +3145,13 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
             window.addEventListener('touchmove', function (evt) {
 
                 if (this.isTouchStart) {
-                    document.querySelector('#testP').innerHTML=this.option.tx+"_#_"+this.option.ty;
+                    document.querySelector('#testP').innerHTML=this.option.tx+"_###_"+this.option.ty;
                     var dx = evt.touches[0].pageX - this.preX;
                     var dy = evt.touches[0].pageY - this.preY;
                     this.option.tx += dx;
                     this.option.ty += dy;
                     this.atEntry.style.transform = 'translate(' + this.option.tx + 'px, ' + this.option.ty + 'px)';
+                    this.atEntry.style.webkitTransform = 'translate(' + this.option.tx + 'px, ' + this.option.ty + 'px)';
                     this.preX = evt.touches[0].pageX;
                     this.preY = evt.touches[0].pageY;
                     event.preventDefault();
