@@ -1,10 +1,6 @@
 (function(){
     try {
-        if(!document.body){
-            alert('please put the alloylever script reference between <body> and </body>');
-            return;
-        }
-        new AlloyLever({
+        var al=new AlloyLever({
             hide: true,
             reportTo: 'xxx',
             height: '55%',
@@ -15,7 +11,11 @@
             timeline: [],
             xhrs: [],
             resources: {cookie: '', storage: ''}
-        }, 'body');
+        });
+
+        window.addEventListener('load',function(){
+            al.setNuclearContainer('body');
+        },false);
     }catch(e) {
         alert(e);
     };

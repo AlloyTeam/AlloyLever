@@ -26,13 +26,13 @@ npm install alloylever
 ```
 # 使用 
 
-在你的<body></body>内引用下面脚本就可以：
+在你的页面任何地方引用下面脚本就可以，但是该js必须引用在其他脚本之前。
 
 ```html
 <script src="alloylever.js"></script>
 ```
 
-需要注意的是，该js必须引用在其他脚本之前！！
+务必记住，该js必须引用在其他脚本之前！！
 
 # 感谢Nuclear
 * [nuclear.js](https://github.com/AlloyTeam/Nuclear)

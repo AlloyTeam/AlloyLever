@@ -1,4 +1,4 @@
-var at = new AlloyLever({
+var al = new AlloyLever({
     hide:true,
     reportTo:'xxx',
     height:'55%',
@@ -9,7 +9,7 @@ var at = new AlloyLever({
     timeline:[],
     xhrs:[],
     resources:{cookie:'',storage:''}
-},'body');
+});
 
 $.ajax({
     url:'js/test2.json',
@@ -24,3 +24,7 @@ console.info('这是info信息')
 console.error('这是error信息')
 console.debug('这是debug信息')
 console.warn('这是warn信息')
+
+window.addEventListener('load',function(){
+    al.setNuclearContainer('body');
+},false);
