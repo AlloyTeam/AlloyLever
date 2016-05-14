@@ -3149,7 +3149,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                     var dy = evt.touches[0].pageY - this.preY;
                     this.option.tx += dx;
                     this.option.ty += dy;
-                    this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
+                    this.atEntry.style.transform = 'translate(' + this.option.tx + 'px, ' + this.option.ty + 'px)';
                     this.preX = evt.touches[0].pageX;
                     this.preY = evt.touches[0].pageY;
                     event.preventDefault();
