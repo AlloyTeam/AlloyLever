@@ -22,7 +22,7 @@ gulp.task('concat', function () {
         'fix/intro.js',
         'dev/js/app.js',
         'dev/js/timing.js',
-        'dev/component/alloy_lever.js',
+        'dev/component/alloy_lever/index.js',
         'fix/outro.js',
         'fix/init_alloylever.js'
 
@@ -58,8 +58,8 @@ gulp.task('readFile',function(callback) {
             }
 
             contentArr.push(  fs.readFileSync("src/component/"+key+"/index.js", "utf8"));
-            file(key+".js", contentArr.join("") , { src: true })
-                .pipe(gulp.dest('dev/component'))
+            file("index.js", contentArr.join("") , { src: true })
+                .pipe(gulp.dest('dev/component/'+key))
 
         }
         callback();
@@ -67,11 +67,10 @@ gulp.task('readFile',function(callback) {
 })
 
 gulp.task('copyHTML', function () {
-    return gulp.src('src/*.html')
-        .pipe(replace(/<script src="component\/(.*?)\/index.js"><\/script>/gm ,function(a,b,c){
-           return '<script src="component\/'+b+'.js"><\/script>';
-        }))
-     .pipe(gulp.dest('dev'));
+    //.pipe(replace(/<script src="component\/(.*?)\/index.js"><\/script>/gm ,function(a,b,c){
+    //    return '<script src="component\/'+b+'.js"><\/script>';
+    //}))
+    return gulp.src('src/*.html') .pipe(gulp.dest('dev'));
 });
 
 gulp.task('copyJS', function () {

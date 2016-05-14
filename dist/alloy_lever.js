@@ -2651,12 +2651,8 @@ App.getFileExt = function(filename) {
     return filename.substring(index1, index2).toLowerCase();
 }
 
-App.loadFile = function (tpl, css, callback) {
-    if (arguments.length === 2) {
-        css(App.componentRes[tpl]);
-    } else {
-        callback(App.componentRes[tpl],App.componentRes[css]);
-    }
+App.loadFile = function (path) {
+    return App.componentRes[path];
 }
 
 window.timing = window.timing || {
@@ -2984,7 +2980,9 @@ App.componentRes['component/alloy_lever/index.html'] =
     </div>\
 </div>';
 
-App.loadFile("component/alloy_lever/index.html", function (tpl) {
+;(function () {
+    var tpl = App.loadFile("component/alloy_lever/index.html");
+
     var AlloyLever = Nuclear.create({
         install: function () {
             this.initConsole();
@@ -3244,7 +3242,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
     });
     window.AlloyLever= AlloyLever;
-});
+})();
 })();
 (function(){
     try {

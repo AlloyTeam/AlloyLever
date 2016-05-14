@@ -1,4 +1,6 @@
-App.loadFile("component/alloy_lever/index.html", function (tpl) {
+;(function () {
+    var tpl = App.loadFile("component/alloy_lever/index.html");
+
     var AlloyLever = Nuclear.create({
         install: function () {
             this.initConsole();
@@ -258,4 +260,4 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
     });
     window.AlloyLever= AlloyLever;
-});
+})();

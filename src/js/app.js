@@ -6,23 +6,9 @@ App.getFileExt = function(filename) {
     return filename.substring(index1, index2).toLowerCase();
 }
 
-App.loadFile = function (tpl, css, callback) {
-    if (arguments.length === 2) {
-        var tplHttp = new XMLHttpRequest();
-        tplHttp.open("GET", tpl, false);
-        tplHttp.send();
-        css(tplHttp.responseText);
-    } else {
-        var tplHttp = new XMLHttpRequest();
-        tplHttp.open("GET", tpl, false);
-        tplHttp.send();
-
-        var cssHttp = new XMLHttpRequest();
-        cssHttp.open("GET", css, false);
-        cssHttp.send();
-
-        callback(tplHttp.responseText, cssHttp.responseText);
-
-    }
-
+App.loadFile = function (path) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", path, false);
+    xhr.send();
+    return xhr.responseText;
 }
