@@ -2651,12 +2651,8 @@ App.getFileExt = function(filename) {
     return filename.substring(index1, index2).toLowerCase();
 }
 
-App.loadFile = function (tpl, css, callback) {
-    if (arguments.length === 2) {
-        css(App.componentRes[tpl]);
-    } else {
-        callback(App.componentRes[tpl],App.componentRes[css]);
-    }
+App.loadFile = function (path) {
+    return App.componentRes[path];
 }
 
 window.timing = window.timing || {
@@ -2933,7 +2929,7 @@ App.componentRes['component/alloy_lever/index.html'] =
     }\
 </style>\
 \
-<div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px)">AlloyLever</div>\
+<div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px);-webkit-transform: translate3d({{tx}}px,{{ty}}px,0px);">AlloyLever</div>\
 <div class="at-ctn {{#hide}}at-hide{{/hide}}">\
     <div class="at-tabs">\
         <a class="at-tab {{tab1}}" onclick="goto(1)"  href="javascript:;">Console</a>\
@@ -2984,7 +2980,9 @@ App.componentRes['component/alloy_lever/index.html'] =
     </div>\
 </div>';
 
-App.loadFile("component/alloy_lever/index.html", function (tpl) {
+;(function () {
+    var tpl = App.loadFile("component/alloy_lever/index.html");
+
     var AlloyLever = Nuclear.create({
         install: function () {
             this.initConsole();
@@ -3149,7 +3147,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
                     var dy = evt.touches[0].pageY - this.preY;
                     this.option.tx += dx;
                     this.option.ty += dy;
-                    this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
+                    this.atEntry.style.webkitTransform =this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
                     this.preX = evt.touches[0].pageX;
                     this.preY = evt.touches[0].pageY;
                     event.preventDefault();
@@ -3244,7 +3242,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
 
     });
     window.AlloyLever= AlloyLever;
-});
+})();
 })();
 (function(){
     try {
