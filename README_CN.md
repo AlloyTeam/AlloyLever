@@ -22,7 +22,7 @@ npm install alloylever
 ```
 # 使用 
 
-在你的<body></body>内引用下面脚本就可以：
+在你的页面内引用下面脚本就可以：
 
 ```html
 <script src="alloylever.js"></script>
