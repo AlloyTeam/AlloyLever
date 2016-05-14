@@ -2929,7 +2929,7 @@ App.componentRes['component/alloy_lever/index.html'] =
     }\
 </style>\
 \
-<div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px)">AlloyLever</div>\
+<div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px);-webkit-transform: translate3d({{tx}}px,{{ty}}px,0px);">AlloyLever</div>\
 <div class="at-ctn {{#hide}}at-hide{{/hide}}">\
     <div class="at-tabs">\
         <a class="at-tab {{tab1}}" onclick="goto(1)"  href="javascript:;">Console</a>\
@@ -3147,7 +3147,7 @@ App.componentRes['component/alloy_lever/index.html'] =
                     var dy = evt.touches[0].pageY - this.preY;
                     this.option.tx += dx;
                     this.option.ty += dy;
-                    this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
+                    this.atEntry.style.webkitTransform =this.atEntry.style.transform = 'translate3d(' + this.option.tx + 'px, ' + this.option.ty + 'px, 0)';
                     this.preX = evt.touches[0].pageX;
                     this.preY = evt.touches[0].pageY;
                     event.preventDefault();
