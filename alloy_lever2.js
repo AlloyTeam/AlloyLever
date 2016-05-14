@@ -3144,7 +3144,7 @@ App.loadFile("component/alloy_lever/index.html", function (tpl) {
         initEntry: function () {
 
             window.addEventListener('touchmove', function (evt) {
-                console.log(this.option.tx+"__"+this.option.ty)
+                document.querySelector('.banner').innerHTML=this.option.tx+"__"+this.option.ty;
                 if (this.isTouchStart) {
                     var dx = evt.touches[0].pageX - this.preX;
                     var dy = evt.touches[0].pageY - this.preY;
