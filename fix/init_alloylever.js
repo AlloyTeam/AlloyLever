@@ -13,7 +13,7 @@
             resources: {cookie: '', storage: ''}
         });
 
-        window.addEventListener('load',function(){
+        window.addEventListener('DOMContentLoaded',function(){
             al.setNuclearContainer('body');
         },false);
     }catch(e) {

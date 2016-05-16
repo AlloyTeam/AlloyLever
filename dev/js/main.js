@@ -25,6 +25,6 @@ console.error('这是error信息')
 console.debug('这是debug信息')
 console.warn('这是warn信息')
 
-window.addEventListener('load',function(){
+window.addEventListener('DOMContentLoaded',function(){
     al.setNuclearContainer('body');
 },false);
