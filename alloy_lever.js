@@ -2645,12 +2645,6 @@ var App = {};
 
 App.componentRes = {};
 
-App.getFileExt = function(filename) {
-    var index1 = filename.lastIndexOf(".")
-    var index2 = filename.length;
-    return filename.substring(index1, index2).toLowerCase();
-}
-
 App.loadFile = function (path) {
     return App.componentRes[path];
 }
@@ -3259,7 +3253,7 @@ App.componentRes['component/alloy_lever/index.html'] =
             resources: {cookie: '', storage: ''}
         });
 
-        window.addEventListener('load',function(){
+        window.addEventListener('DOMContentLoaded',function(){
             al.setNuclearContainer('body');
         },false);
     }catch(e) {
