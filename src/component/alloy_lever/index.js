@@ -3,8 +3,6 @@
 
     var AlloyLever = Nuclear.create({
         install: function () {
-            this.supportTouch='ontouchstart' in document.documentElement;
-
             this.initConsole();
             this.initError();
             this.initXHR();
@@ -195,11 +193,9 @@
             this.option['content' + this.option.index] = 'at-active';
             return tpl;
         },
-        goto: function (index) {
+        goto: function (index,event) {
             this.option.index = index;
-            setTimeout(function(){
-                this.option.hide=false;
-            }.bind(this),0);
+            event.stopPropagation();
         },
         log: function (msg, type) {
             this.option.logs.push({type: type, msg: msg});

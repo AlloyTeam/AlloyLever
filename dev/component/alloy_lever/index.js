@@ -168,10 +168,10 @@ App.componentRes['component/alloy_lever/index.html'] =
 <div class="at-entry" nc-id="atEntry" onclick="toggleEntry()"  ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px);-webkit-transform: translate3d({{tx}}px,{{ty}}px,0px);">AlloyLever</div>\
 <div class="at-ctn {{#hide}}at-hide{{/hide}}">\
     <div class="at-tabs">\
-        <a class="at-tab {{tab1}}" onclick="goto(1)"  href="javascript:;">Console</a>\
-        <a class="at-tab {{tab2}}" onclick="goto(2)"  href="javascript:;">XHR</a>\
-        <a class="at-tab {{tab3}}" onclick="goto(3)"  href="javascript:;">Resources</a>\
-        <a class="at-tab {{tab4}}" onclick="goto(4)"   href="javascript:;">Timeline</a>\
+        <a class="at-tab {{tab1}}" onclick="goto(1,event)"  href="javascript:;">Console</a>\
+        <a class="at-tab {{tab2}}" onclick="goto(2,event)"  href="javascript:;">XHR</a>\
+        <a class="at-tab {{tab3}}" onclick="goto(3,event)"  href="javascript:;">Resources</a>\
+        <a class="at-tab {{tab4}}" onclick="goto(4,event)"   href="javascript:;">Timeline</a>\
     </div>\
     <div class="at-content">\
         <div class="at-logs {{content1}}">\
@@ -221,8 +221,6 @@ App.componentRes['component/alloy_lever/index.html'] =
 
     var AlloyLever = Nuclear.create({
         install: function () {
-            this.supportTouch='ontouchstart' in document.documentElement;
-
             this.initConsole();
             this.initError();
             this.initXHR();
@@ -413,11 +411,9 @@ App.componentRes['component/alloy_lever/index.html'] =
             this.option['content' + this.option.index] = 'at-active';
             return tpl;
         },
-        goto: function (index) {
+        goto: function (index,event) {
             this.option.index = index;
-            setTimeout(function(){
-                this.option.hide=false;
-            }.bind(this),0);
+            event.stopPropagation();
         },
         log: function (msg, type) {
             this.option.logs.push({type: type, msg: msg});
