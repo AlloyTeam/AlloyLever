@@ -3,6 +3,8 @@
 
     var AlloyLever = Nuclear.create({
         install: function () {
+            this.supportTouch='ontouchstart' in document.documentElement;
+
             this.initConsole();
             this.initError();
             this.initXHR();
@@ -174,11 +176,11 @@
 
             window.addEventListener('touchend', function (evt) {
                 this.isTouchStart = false;
-                if (Math.abs(evt.changedTouches[0].pageX - this.startX) < 30 && Math.abs(evt.changedTouches[0].pageY - this.startY) < 30) {
-                    this.toogle();
-                }
                 this.removeClass(this.atEntry,'at-entry-active');
             }.bind(this), false);
+        },
+        toggleEntry:function(){
+                this.toogle();
         },
         render: function () {
             this.option['tab1'] = '';

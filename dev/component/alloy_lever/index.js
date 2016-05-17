@@ -165,7 +165,7 @@ App.componentRes['component/alloy_lever/index.html'] =
     }\
 </style>\
 \
-<div class="at-entry" nc-id="atEntry" ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px);-webkit-transform: translate3d({{tx}}px,{{ty}}px,0px);">AlloyLever</div>\
+<div class="at-entry" nc-id="atEntry" onclick="toggleEntry()"  ontouchstart="touchStart(event)" style="transform: translate3d({{tx}}px,{{ty}}px,0px);-webkit-transform: translate3d({{tx}}px,{{ty}}px,0px);">AlloyLever</div>\
 <div class="at-ctn {{#hide}}at-hide{{/hide}}">\
     <div class="at-tabs">\
         <a class="at-tab {{tab1}}" onclick="goto(1)"  href="javascript:;">Console</a>\
@@ -221,6 +221,8 @@ App.componentRes['component/alloy_lever/index.html'] =
 
     var AlloyLever = Nuclear.create({
         install: function () {
+            this.supportTouch='ontouchstart' in document.documentElement;
+
             this.initConsole();
             this.initError();
             this.initXHR();
@@ -392,11 +394,11 @@ App.componentRes['component/alloy_lever/index.html'] =
 
             window.addEventListener('touchend', function (evt) {
                 this.isTouchStart = false;
-                if (Math.abs(evt.changedTouches[0].pageX - this.startX) < 30 && Math.abs(evt.changedTouches[0].pageY - this.startY) < 30) {
-                    this.toogle();
-                }
                 this.removeClass(this.atEntry,'at-entry-active');
             }.bind(this), false);
+        },
+        toggleEntry:function(){
+                this.toogle();
         },
         render: function () {
             this.option['tab1'] = '';
