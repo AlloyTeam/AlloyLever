@@ -2,7 +2,7 @@
 
 # AlloyLever Preview
 
-Mobile Web Developer Tool
+Web Developer Tool
 
 ![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
 

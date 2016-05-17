@@ -1,8 +1,8 @@
-[English](https://github.com/AlloyTeam/AlloyLever) | ¼òÌåÖĞÎÄ
+[English](https://github.com/AlloyTeam/AlloyLever) | ç®€ä½“ä¸­æ–‡
 
 # AlloyLever
 
-Mobile Web Developer Tool
+Web Developer Tool
 
 ![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
 
@@ -10,31 +10,31 @@ Mobile Web Developer Tool
 
 ![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever3.png)
 
-# ¹¦ÄÜ
+# åŠŸèƒ½
 
-* µã»÷alloylever°´Å¥Ö®¼äÇĞ»»ÏÔÊ¾»òÒş²Ø¹¤¾ßÃæ°å
-* Console»áÊä³öËùÓĞÓÃ»§´òÓ¡µÄÈÕÖ¾Èçconsole.[log/error/info/debug/debug]
-* Console»áÊä³öËùÓĞµÄ´íÎóĞÅÏ¢(½Å±¾´íÎóºÍÍøÂçÇëÇó´íÎó)
-* XHRÃæ°å»áÊä³öËùÓĞ£¨XMLHttpRequest£©AJAXÇëÇóºÍ·şÎñÆ÷¶Ë·µ»ØµÄÊı¾İ
-* ResoucesÃæ°å»áÊä³öËùÓĞµÄCookieĞÅÏ¢ºÍLocalStorage
-* TimeLimeÃæ°å»áÊä³öÒ³ÃæÏà¹ØµÄÉúÃüÖÜÆÚÀïµÄÊ±¼ä¶ÎºÄÊ±Çé¿ö
+* ç‚¹å‡»alloyleveræŒ‰é’®ä¹‹é—´åˆ‡æ¢æ˜¾ç¤ºæˆ–éšè—å·¥å…·é¢æ¿
+* Consoleä¼šè¾“å‡ºæ‰€æœ‰ç”¨æˆ·æ‰“å°çš„æ—¥å¿—å¦‚console.[log/error/info/debug/debug]
+* Consoleä¼šè¾“å‡ºæ‰€æœ‰çš„é”™è¯¯ä¿¡æ¯(è„šæœ¬é”™è¯¯å’Œç½‘ç»œè¯·æ±‚é”™è¯¯)
+* XHRé¢æ¿ä¼šè¾“å‡ºæ‰€æœ‰ï¼ˆXMLHttpRequestï¼‰AJAXè¯·æ±‚å’ŒæœåŠ¡å™¨ç«¯è¿”å›çš„æ•°æ®
+* Resoucesé¢æ¿ä¼šè¾“å‡ºæ‰€æœ‰çš„Cookieä¿¡æ¯å’ŒLocalStorage
+* TimeLimeé¢æ¿ä¼šè¾“å‡ºé¡µé¢ç›¸å…³çš„ç”Ÿå‘½å‘¨æœŸé‡Œçš„æ—¶é—´æ®µè€—æ—¶æƒ…å†µ
 
-# Í¨¹ınpm°²×°
+# é€šè¿‡npmå®‰è£…
 
 ```html
 npm install alloylever
 ```
-# Ê¹ÓÃ 
+# ä½¿ç”¨ 
 
-ÔÚÄãµÄÒ³ÃæÈÎºÎµØ·½ÒıÓÃÏÂÃæ½Å±¾¾Í¿ÉÒÔ£¬µ«ÊÇ¸Ãjs±ØĞëÒıÓÃÔÚÆäËû½Å±¾Ö®Ç°¡£
+åœ¨ä½ çš„é¡µé¢ä»»ä½•åœ°æ–¹å¼•ç”¨ä¸‹é¢è„šæœ¬å°±å¯ä»¥ï¼Œä½†æ˜¯è¯¥jså¿…é¡»å¼•ç”¨åœ¨å…¶ä»–è„šæœ¬ä¹‹å‰ã€‚
 
 ```html
 <script src="alloylever.js"></script>
 ```
 
-Îñ±Ø¼Ç×¡£¬¸Ãjs±ØĞëÒıÓÃÔÚÆäËû½Å±¾Ö®Ç°£¡£¡
+åŠ¡å¿…è®°ä½ï¼Œè¯¥jså¿…é¡»å¼•ç”¨åœ¨å…¶ä»–è„šæœ¬ä¹‹å‰ï¼ï¼
 
-# ¸ĞĞ»Nuclear
+# æ„Ÿè°¢Nuclear
 * [nuclear.js](https://github.com/AlloyTeam/Nuclear)
 
 # License
