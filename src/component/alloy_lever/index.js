@@ -197,6 +197,9 @@
         },
         goto: function (index) {
             this.option.index = index;
+            setTimeout(function(){
+                this.option.hide=false;
+            }.bind(this),0);
         },
         log: function (msg, type) {
             this.option.logs.push({type: type, msg: msg});

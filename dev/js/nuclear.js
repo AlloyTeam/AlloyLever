@@ -1,4 +1,4 @@
-/* Nuclear
+/* Nuclear  v0.2.6
  * By AlloyTeam http://www.alloyteam.com/
  * Github: https://github.com/AlloyTeam/Nuclear
  * MIT Licensed.
@@ -1510,6 +1510,12 @@ Nuclear._mixObj = function (obj) {
         }
     };
 
+    obj._nuclearSetStyleData=function(){
+        if(this.node&&this.node.querySelector){
+            var style=this.node.querySelector('style');
+            style&&style.setAttribute('data-nuclearId',this._ncInstanceId);
+        }
+    }
 
     obj._nuclearRender = function (item) {
         var isFirstRender = false;
@@ -1550,7 +1556,7 @@ Nuclear._mixObj = function (obj) {
             this._nuclearFix();
             if (this.onRefresh) this.onRefresh();
         }
-
+        this._nuclearSetStyleData();
         //刷新局部样式
         if (!isFirstRender) {
             Nuclear.refreshStyle(this._ncInstanceId);
@@ -2635,6 +2641,5 @@ Nuclear.Class.extend = function (prop) {
 
 
 
-
-return Nuclear;
+    return Nuclear;
 }));
