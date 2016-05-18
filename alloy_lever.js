@@ -3024,9 +3024,22 @@ App.componentRes['component/alloy_lever/index.html'] =
                 };
                 if (isAvailable) {
                     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        self.option.xhrs.push({method:xhr.alloyLeverMethod,rqsUrl:xhr.alloyLeverUrl,rspUrl:xhr.responseURL, json:JSON.stringify(JSON.parse( xhr.responseText), null, "\t")})
+                        try {
+                            self.option.xhrs.push({
+                                method: xhr.alloyLeverMethod,
+                                rqsUrl: xhr.alloyLeverUrl,
+                                rspUrl: xhr.responseURL,
+                                json: JSON.stringify(JSON.parse(xhr.responseText), null, "\t")
+                            })
+                        } catch (e) {
+                            self.option.xhrs.push({
+                                method: xhr.alloyLeverMethod,
+                                rqsUrl: xhr.alloyLeverUrl,
+                                rspUrl: xhr.responseURL,
+                                json: xhr.responseText})
+                        }
                     }else if(xhr.status>=400) {
-                        console.error(xhr.responseURL +' '+xhr.status+' ('+xhr.statusText+')')
+                        console.error(xhr.responseURL + ' ' + xhr.status + ' (' + xhr.statusText + ')')
                     }
                     else{
                         window.setTimeout(function () {
