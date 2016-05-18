@@ -8,8 +8,9 @@
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var header = require('gulp-header');
+var version = require('./package.json').version;
 
-var headerComment = '/* AlloyLever\n'+
+var headerComment = '/* AlloyLever v'+version+'\n'+
     ' * By AlloyTeam http://www.alloyteam.com/\n'+
     ' * Github: https://github.com/AlloyTeam/AlloyLever\n'+
     ' * MIT Licensed.\n' +

@@ -43,14 +43,14 @@
                 if (isAvailable) {
                     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
                         try {
-                            self.option.xhrs.push({
+                            self.option.xhrs.realPush({
                                 method: xhr.alloyLeverMethod,
                                 rqsUrl: xhr.alloyLeverUrl,
                                 rspUrl: xhr.responseURL,
                                 json: JSON.stringify(JSON.parse(xhr.responseText), null, "\t")
                             })
                         } catch (e) {
-                            self.option.xhrs.push({
+                            self.option.xhrs.realPush({
                                 method: xhr.alloyLeverMethod,
                                 rqsUrl: xhr.alloyLeverUrl,
                                 rspUrl: xhr.responseURL,
@@ -158,7 +158,7 @@
             var data = timing.printSimpleTable();
             for (var key in data) {
                 if(data.hasOwnProperty(key)) {
-                    this.option.timeline.push({msg: key + ': ' + Math.round(data[key])});
+                    this.option.timeline.realPush({msg: key + ': ' + Math.round(data[key])});
                 }
             }
         },
@@ -211,7 +211,7 @@
             event.stopPropagation();
         },
         log: function (msg, type) {
-            this.option.logs.push({type: type, msg: msg});
+            this.option.logs.realPush({type: type, msg: msg});
         },
         show: function () {
             this.option.hide = false;
