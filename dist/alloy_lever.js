@@ -2895,6 +2895,7 @@ App.componentRes['component/alloy_lever/index.html'] =
     }\
 \
     .at-entry{\
+        cursor: pointer;\
         position: fixed;\
         z-index: 10002;\
         width: 80px;\
