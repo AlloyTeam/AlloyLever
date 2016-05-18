@@ -352,10 +352,10 @@ App.componentRes['component/alloy_lever/index.html'] =
             var self = this;
             ['log', 'error', 'warn', 'debug', 'info'].forEach(function (item) {
                 //no local scope,has fn scope ,so item is item
-                console[item] = function (msg) {
+                console[item] = function () {
                     //this.wc===console.wc?
-                    this.wc[item](msg);
-                    self.log(msg, item);
+                    this.wc[item].apply(this.wc, Array.prototype.slice.call(arguments));
+                    self.log(arguments, item);
                 }
             });
         },
@@ -429,8 +429,32 @@ App.componentRes['component/alloy_lever/index.html'] =
             this.option.index = index;
             event.stopPropagation();
         },
-        log: function (msg, type) {
-            this.option.logs.realPush({type: type, msg: msg});
+        log: function (msgs, type) {
+            var i = 0, len = msgs.length;
+            var output = "";
+            try {
+                for (; i < len; i++) {
+                    output += this.toOutput(msgs[i]) + "  ";
+                }
+                this.option.logs.realPush({type: type, msg: output});
+            } catch (e) {
+                output = "", i = 0;
+                for (; i < len; i++) {
+                    output += msgs[i] + "  ";
+                }
+                this.option.logs.realPush({type: type, msg: output});
+            }
+
+        },
+        toOutput:function(obj){
+            if(this.isFunction(obj)){
+                return obj.toString();
+            }else{
+                return JSON.stringify(obj, null, "\t");
+            }
+        },
+        isFunction :function (obj) {
+            return Object.prototype.toString.call(obj) == '[object Function]';
         },
         show: function () {
             this.option.hide = false;
