@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <title></title>
-
-    <script src="alloy_lever.js"></script>
 </head>
 <body>
 <a href="https://github.com/AlloyTeam/AlloyLever" target="_blank" style="position: fixed; right: 0; top: 0; z-index: 101;width:140px;height:140px;">
@@ -22,22 +20,29 @@
 </style>
 <img class="banner" src="asset/alloylever.png" />
 <p>点击右下角的AlloyLever按钮显示开发者工具面板</p>
+<script src="alloy_lever.js"></script>
 <script>
-    //测试ajax劫持
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'asset/test.json');
-    xhr.send();
+    var data={
+        "beatles": [
+            { "firstName": "John", "lastName": "Lennon" },
+            { "firstName": "Paul", "lastName": "McCartney" },
+            { "firstName": "George", "lastName": "Harrison" },
+            { "firstName": "Ringo", "lastName": "Starr" }
+        ],
+        "@item": function () {
+            return JSON.stringify(this);
+        }
+    };
 
-    //测试console
-    console.log('这是log信息')
-    console.info('这是info信息')
-    console.error('这是error信息')
-    console.debug('这是debug信息')
-    console.warn('这是warn信息')
+    var html=   Nuclear.Tpl.render('{{#beatles}}\
+          <div onclick="XXX({{@item}})">  * {{firstName}}</div>\
+    {{/beatles}}',data);
 
-    //测试错误捕获
-    console.log('下面的错误是AlloyLever捕获到的 -->');
-    aaaa.bbbb = 1;
+    function XXX(item){
+        alert(item.firstName)
+    }
+
+    document.body.innerHTML=html;
 </script>
 </body>
 </html>
