@@ -2926,7 +2926,7 @@ App.componentRes['component/alloy_lever/index.html'] =
     <div class="at-content">\
         <div class="at-logs {{content1}}">\
             <div class="at-log">\
-                {{#logs}} <p class="at-item at-item-{{type}}">{{msg}}</p> {{/logs}}\
+                {{#logs}} <pre class="at-item at-item-{{type}}">{{msg}}</pre> {{/logs}}\
             </div>\
         </div>\
         <div class="at-logs {{content2}}">\
@@ -3183,7 +3183,7 @@ App.componentRes['component/alloy_lever/index.html'] =
             var output = "";
             try {
                 for (; i < len; i++) {
-                    output += this.toOutput(msgs[i]) + "  ";
+                    output += this.toOutput(msgs[i]) + "\n";
                 }
                 this.option.logs.realPush({type: type, msg: output});
             } catch (e) {

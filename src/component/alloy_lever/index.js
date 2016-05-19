@@ -215,7 +215,7 @@
             var output = "";
             try {
                 for (; i < len; i++) {
-                    output += this.toOutput(msgs[i]) + "  ";
+                    output += this.toOutput(msgs[i]) + "\n";
                 }
                 this.option.logs.realPush({type: type, msg: output});
             } catch (e) {
