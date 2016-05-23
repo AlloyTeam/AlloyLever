@@ -1,20 +1,36 @@
-/* Nuclear  v0.2.8
+/* Nuclear  v0.2.14
  * By AlloyTeam http://www.alloyteam.com/
  * Github: https://github.com/AlloyTeam/Nuclear
  * MIT Licensed.
  */
-;(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory);
-    } else if (typeof exports === 'object') {
-        module.exports = factory();
-    } else if (typeof define === "function" && define.cmd) {
-        define(function(require, exports, module){
-            module.exports=factory();
-        });
+(function( global, factory ) {
+
+    if ( typeof module === "object" && typeof module.exports === "object" ) {
+        // For CommonJS and CommonJS-like environments where a proper `window`
+        // is present, execute the factory and get Nuclear.
+        // For environments that do not have a `window` with a `document`
+        // (such as Node.js), expose a factory as module.exports.
+        // This accentuates the need for the creation of a real `window`.
+        // e.g. var Nuclear = require("alloynuclear")(window);
+        // e.g. var Nuclear = require("alloynuclear")(jsdom.jsdom().defaultView);
+        module.exports = global.document ?
+            factory( global, true ) :
+            function( w ) {
+                if ( !w.document ) {
+                    throw new Error( "Nuclear requires a window with a document" );
+                }
+                return factory( w );
+            };
+    } else {
+        factory( global );
     }
-    root.Nuclear&&root.Nuclear.instances||(root.Nuclear=factory());
-}(window, function () {
+
+// Pass this if window is not defined yet
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+
+    var Nuclear={};
+    var document=window.document;
+
 
 (function() {
     "use strict";
@@ -1355,24 +1371,12 @@
         }
     };
 
-    if (typeof exports !== 'undefined') {
-        if (typeof module !== 'undefined' && module.exports) {
-            exports = module.exports = diffDOM;
-        }
-        exports.diffDOM = diffDOM;
-    } else {
-        // `window` in the browser, or `exports` on the server
-        window.diffDOM = diffDOM;
-    }
+    Nuclear.diffDOM = new diffDOM();
 
 }.call(this));
 
-var Nuclear={};
-
-Nuclear.diffDOM = new diffDOM();
-
 Nuclear.create = function (obj, setting) {
-    obj._nuclearSetting = setting;
+    obj._nuclearSetting = setting||{};
     Nuclear._mixObj(obj);
     var currentEvn = this === Nuclear ? Nuclear.Class : this;
     var component = currentEvn.extend(obj);
@@ -1382,22 +1386,36 @@ Nuclear.create = function (obj, setting) {
 
 Nuclear._mixObj = function (obj) {
     obj.ctor = function (option, selector) {
-        this._ncInstanceId=Nuclear.getInstanceId();
+
         this._nuclearTwoWay = true;
-        this._nuclearDiffDom=true;
-        if(this._nuclearSetting) {
-            if (this._nuclearSetting.twoWay === false) {
-                this._nuclearTwoWay = false;
-            }
-            if (this._nuclearSetting.diff === false) {
-                this._nuclearDiffDom = false;
-            }
+        this._nuclearDiffDom = true;
+        this._nuclearServerRender = this._nuclearSetting.server;
+        //close two way binding by default in node evn
+        if (this._nuclearSetting.twoWay === false||this._nuclearServerRender) {
+            this._nuclearTwoWay = false;
         }
+        if (this._nuclearSetting.diff === false) {
+            this._nuclearDiffDom = false;
+        }
+        this._nuclearReRender= (typeof option === 'string');
+
+        if(this._nuclearReRender) {
+            this.parentNode = document.querySelector(option).firstChild;
+            this._ncInstanceId = this.parentNode.getAttribute('data-nuclearId');
+            this._nuclearOption = JSON.parse(this.parentNode.querySelector("input[name=__nuclear_option_"+this._ncInstanceId+"]").value);
+        }else if(this._nuclearServerRender) {
+            this._ncInstanceId = Nuclear.getServerInstanceId();
+            this._nuclearOption = option;
+        }else {
+            this._ncInstanceId = Nuclear.getInstanceId();
+            this._nuclearOption = option;
+        }
+
         //加window防止构建到webpack中，Nuclear是局部而非全局
         window.Nuclear.instances[this._ncInstanceId] = this;
         this._nuclearParentEmpty = !selector;
         this.HTML = "";
-        this._nuclearOption = option;
+
         Object.defineProperty(this, 'option', {
             get: function () {
                 return this._nuclearOption;
@@ -1413,15 +1431,20 @@ Nuclear._mixObj = function (obj) {
                 }
             }
         });
-        if (!this._nuclearParentEmpty) {
-            this.parentNode = typeof selector === "string" ? document.querySelector(selector) : selector;
-            if(document.body!==this.parentNode) {
-                while (this.parentNode.firstChild) {
-                    this.parentNode.removeChild(this.parentNode.firstChild);
+        this.option['@item']=function(){
+
+            return JSON.stringify(this);
+        }
+        if(!this._nuclearReRender) {
+            if (!this._nuclearParentEmpty) {
+                this.parentNode = typeof selector === "string" ? document.querySelector(selector) : selector;
+                if(document.body === this.parentNode) {
+                    this.parentNode=document.createElement('div')
+                    document.body.appendChild(this.parentNode);
                 }
+            } else {
+                this.parentNode = document.createElement("div");
             }
-        } else {
-            this.parentNode = document.createElement("div");
         }
         if (this.install) {
             this.install();
@@ -1473,13 +1496,12 @@ Nuclear._mixObj = function (obj) {
 
     obj.setNuclearContainer = function(selector){
         this.parentNode = typeof selector === "string" ? document.querySelector(selector) : selector;
-        if(document.body!==this.parentNode) {
-            while (this.parentNode.firstChild) {
-                this.parentNode.removeChild(this.parentNode.firstChild);
-            }
+        if(document.body === this.parentNode) {
+            this.parentNode=document.createElement('div')
+            document.body.appendChild(this.parentNode);
         }
         this._nuclearRenderInfo.parent = this.parentNode;
-        this.parentNode.insertAdjacentHTML("beforeEnd", this.HTML);
+        this.parentNode.innerHTML = this.HTML;
         this.node = this.parentNode.lastChild;
         this._mixNode();
     }
@@ -1512,8 +1534,19 @@ Nuclear._mixObj = function (obj) {
 
     obj._nuclearSetStyleData=function(){
         if(this.node&&this.node.querySelector){
-            var style=this.node.querySelector('style');
-            style&&style.setAttribute('data-nuclearId',this._ncInstanceId);
+            var styles=this.node.querySelectorAll('style');
+            var i=0,len=styles.length;
+            for(;i<len;i++){
+                var style=styles[i];
+                style.setAttribute('data-nuclearId',this._ncInstanceId);
+                var cssText=Nuclear.scoper(style.innerHTML,"#nuclear-scoper-" + this._ncInstanceId);
+                style.innerHTML='';
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = cssText;
+                } else {
+                    style.appendChild(document.createTextNode(cssText));
+                }
+            }
         }
     }
 
@@ -1539,7 +1572,7 @@ Nuclear._mixObj = function (obj) {
             //第一次渲染
             if (!Nuclear.isUndefined(item.tpl)) {
                 isFirstRender = true;
-                item.parent.insertAdjacentHTML("beforeEnd", this._nuclearWrap(Nuclear.render(Nuclear._fixEvent(Nuclear._fixTplIndex(item.tpl), this._ncInstanceId), item.data)));
+                item.parent.innerHTML = this._nuclearWrap(Nuclear.render(Nuclear._fixEvent(Nuclear._fixTplIndex(item.tpl), this._ncInstanceId), item.data));
                 this.node = item.parent.lastChild;
             }
         }
@@ -1558,9 +1591,7 @@ Nuclear._mixObj = function (obj) {
         }
         this._nuclearSetStyleData();
         //刷新局部样式
-        if (!isFirstRender) {
-            Nuclear.refreshStyle(this._ncInstanceId);
-        }
+        Nuclear.refreshStyle(this._ncInstanceId);
     };
 
     obj._mixNode = function () {
@@ -1617,12 +1648,19 @@ Nuclear._mixObj = function (obj) {
     };
 
     obj._nuclearWrap = function (tpl) {
-        var scopedStr = "";
+        var scopedStr = "",optionStr="";
         if (this.style) {
             scopedStr = '<style scoped data-nuclearId=' + this._ncInstanceId + '>' + this.style() + '</style>';
         }
-        return '<div>' + tpl + scopedStr + '</div>'
+        if(this._nuclearServerRender){
+            optionStr=this._nuclearViewOption(this._ncInstanceId,JSON.stringify(this.option));
+        }
+        return '<div '+(this._nuclearServerRender?'data-server="server"':'')+'>'+ scopedStr + tpl  +optionStr+ '</div>'
     };
+
+    obj._nuclearViewOption = function(id,optionStr){
+        return '<input type="hidden" name="__nuclear_option_'+id+'"  value=\''+optionStr+'\'>'
+    }
 
     obj._nuclearLocalRefresh = function () {
         var item = this._nuclearRenderInfo, rpLen = item.refreshPart.length;
@@ -1716,13 +1754,24 @@ Nuclear.isUndefined = function (o) {
     return typeof (o) === "undefined";
 };
 
-
+Nuclear._serverInstanceId=1000000;
+Nuclear.getServerInstanceId = function () {
+    if(Nuclear._serverInstanceId>10000000&&!Nuclear.instances[1000000])Nuclear._serverInstanceId=1000000;
+    return Nuclear._serverInstanceId++;
+};
 
 Nuclear._instanceId= 0;
 Nuclear.getInstanceId = function () {
+    if(Nuclear._instanceId>Nuclear._serverInstanceId){
+        throw  'please set _serverInstanceId value to a larger value';
+    }
     return Nuclear._instanceId++;
 };
+
 Nuclear.instances = {};
+Nuclear.destroy=function(instance){
+    Nuclear.instances[instance._ncInstanceId] =null;
+}
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js
@@ -2574,20 +2623,20 @@ Nuclear.Class.extend = function (prop) {
             newstyle.setAttribute('data-scoper-nuclearId', ncId);
             if (css && (style.parentElement.nodeName !== "BODY")) {
                 var id = "nuclear-scoper-" + ncId;
-                var prefix = "#" + id;
+                //var prefix = "#" + id;
 
                 //var wrapper = document.createElement("span");
                 //wrapper.id = id;
 
                 var parent = style.parentNode;
-                var grandparent = parent.parentNode;
+                //var grandparent = parent.parentNode;
 
                 parent.id = id;
                 //grandparent.replaceChild(wrapper, parent);
                 //wrapper.appendChild(parent);
                 style.parentNode.removeChild(style);
 
-                csses = csses + scoper(css, prefix);
+                csses = csses + css;
             }
             if (newstyle.styleSheet) {
                 newstyle.styleSheet.cssText = csses;
@@ -2602,10 +2651,9 @@ Nuclear.Class.extend = function (prop) {
         document.getElementsByTagName("body")[0].style.visibility = "visible";
     }
 
-
-
+    Nuclear.scoper = scoper;
+    Nuclear.refreshStyle= function(){};
     if ("scoped" in document.createElement("style")) {
-        Nuclear.refreshStyle= function(){};
         return;
     }
 
@@ -2626,6 +2674,9 @@ Nuclear.Class.extend = function (prop) {
 }());
 
 
+    if ( !noGlobal ) {
+        window.Nuclear&&window.Nuclear.instances||(window.Nuclear=Nuclear);
+    }
 
     return Nuclear;
 }));
