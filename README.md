@@ -19,5 +19,9 @@ AlloyLever.error('这是error信息')
 AlloyLever.entry('#vConsole')
 ```
 
+## 在线演示
+
+[https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
+
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
