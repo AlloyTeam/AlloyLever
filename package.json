@@ -1,6 +1,6 @@
 {
   "name": "alloylever",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Made you can use vConsole in the production environment.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

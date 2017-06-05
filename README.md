@@ -1,5 +1,4 @@
-﻿
-# AlloyLever 
+﻿## AlloyLever 
 
 让你在生产环境轻松使用 [vConsole](https://github.com/WechatFE/vConsole)， 方便定位问题。
 
@@ -12,7 +11,7 @@ npm install alloylever
 CDN地址下载下来使用:
 
 ```
-https://unpkg.com/alloylever@0.2.0/alloy-lever.js
+https://unpkg.com/alloylever@0.3.0/alloy-lever.js
 ```
 
 ## 使用指南
