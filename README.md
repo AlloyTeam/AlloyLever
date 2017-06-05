@@ -1,52 +1,14 @@
 ﻿English | [简体中文](./README_CN.md)
 
-# AlloyLever Preview
+# AlloyLever 
 
-Web Developer Tool
+让你在生产环境轻松使用 [vConsole](https://github.com/WechatFE/vConsole)， 方便定位问题。
 
-![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever2.png)
+## 使用指南
 
-### AJAX
-
-![preview](http://alloyteam.github.io/AlloyLever/asset/alloylever3.png)
-
-# Feature
-
-* Click the AlloyLever button to toggle between showing or hiding the tool panel
-* Output all the log by console.[log|info|warn|debug|error] in the Console tab
-* Output all the error info in the Console tab
-* Output all the XMLHttpRequest's requests in the XHR tab
-* Output all the Cookie info and LocalStorage info in the Resources tab
-* Output all the timing of website's Life Cycle in the Timeline tab
-
-# Demo
-
-![demo](http://alloyteam.github.io/AlloyLever/asset/al.png)
-
-[http://alloyteam.github.io/AlloyLever/](http://alloyteam.github.io/AlloyLever/)
+[vConsole](https://github.com/WechatFE/vConsole) 是一款非常强大的调试工具，但是由于其体积问题不可能在生产环境加载该脚本。
 
 
-
-# Install
-
-You can install it via npm:
-
-```html
-npm install alloylever
-```
-# Usage 
-
-reference in your page ,such as:
-
-```html
-<script src="alloylever.js"></script>
-```
-
-
-Note that you have to reference the script before the other scripts !!
-
-# Many thanks to
-* [nuclear.js](https://github.com/AlloyTeam/Nuclear)
 
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.

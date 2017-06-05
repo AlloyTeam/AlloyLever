@@ -1,7 +1,7 @@
 {
   "name": "alloylever",
-  "version": "0.1.9",
-  "description": "Mobile Web Developer Tool.",
+  "version": "0.2.0",
+  "description": "Made you can use vConsole in the production environment.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,19 +10,11 @@
     "url": "https://github.com/AlloyTeam/AlloyLever"
   },
   "keywords": [
-    "Developer,debug,network,console,mobile"
+    "vConsole",
+    "AlloyLever"
   ],
   "dependencies": {},
-  "devDependencies": {
-    "gulp": "latest",
-    "gulp-concat": "^2.6.0",
-    "gulp-file": "^0.2.0",
-    "gulp-header": "^1.8.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^1.5.3",
-    "run-sequence": "^1.1.5"
-  },
+  "devDependencies": {},
   "author": "dntzhang",
   "license": "MIT",
   "bugs": {
