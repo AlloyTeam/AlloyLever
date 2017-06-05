@@ -15,7 +15,7 @@ AlloyLever.debug('这是debug信息')
 AlloyLever.warn('这是warn信息')
 AlloyLever.error('这是error信息')
 
-//入口。请点击这个DOM元素5次召唤神龙
+//入口。请点击这个DOM元素**6**次召唤神龙
 AlloyLever.entry('#vConsole')
 ```
 
