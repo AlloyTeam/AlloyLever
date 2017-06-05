@@ -3,6 +3,18 @@
 
 让你在生产环境轻松使用 [vConsole](https://github.com/WechatFE/vConsole)， 方便定位问题。
 
+## 安装
+
+```
+npm install alloylever
+```
+
+CDN地址下载下来使用:
+
+```
+https://unpkg.com/alloylever@0.2.0/alloy-lever.js
+```
+
 ## 使用指南
 
 [vConsole](https://github.com/WechatFE/vConsole) 是一款非常强大的调试工具，但是由于其体积问题不可能在生产环境加载该脚本。
