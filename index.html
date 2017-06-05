@@ -5,8 +5,24 @@
     <title></title>
 </head>
 <body>
+    <a href="https://github.com/AlloyTeam/AlloyLever" target="_blank" style="position: absolute;z-index: 1000; right: 0; top: 0;">
+        <img src="http://alloyteam.github.io/omi/asset/github.png" alt="" />
+    </a>
+
     <script src="alloy-lever.js"></script>
-    <div id="vConsole">sfsfs</div>
+    <button id="vConsole">点击我5次加载vConsole并显示打印的信息</button>
+    <pre>
+    <code>
+        AlloyLever.log('这是log信息')
+        AlloyLever.info('这是info信息')
+        AlloyLever.debug('这是debug信息')
+        AlloyLever.warn('这是warn信息')
+        AlloyLever.error('这是error信息')
+
+        //入口
+        AlloyLever.entry('#vConsole')
+    </code>
+    </pre>
     <script>
         AlloyLever.log('这是log信息')
         AlloyLever.info('这是info信息')
