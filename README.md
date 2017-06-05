@@ -30,6 +30,8 @@ AlloyLever.error('这是error信息')
 AlloyLever.entry('#vConsole')
 ```
 
+你也可以重写`AlloyLever.entry`定义你的唤起方式，默认的方式你点击6次DOM元素。
+
 ## 在线演示
 
 [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
