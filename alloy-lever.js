@@ -1,5 +1,5 @@
 /*!
- *  AlloyLever v0.4.0 By dntzhang
+ *  AlloyLever v0.5.0 By dntzhang
  *  Github: https://github.com/AlloyTeam/AlloyLever
  *  MIT Licensed.
  */
@@ -17,39 +17,50 @@
     AlloyLever.cdn = '//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js'
     AlloyLever.store = []
 
+    var log = window.console.log,
+        info = window.console.info,
+        warn = window.console.warn,
+        debug = window.console.debug,
+        error = window.console.error
+
     window.console.log = function () {
         AlloyLever.store.push({
-            type: 'log',
+            logType: 'log',
             logs: arguments
         })
+        log.apply(console, arguments)
     }
 
     window.console.info = function () {
         AlloyLever.store.push({
-            type: 'info',
+            logType: 'info',
             logs: arguments
         })
+        info.apply(console, arguments)
     }
 
     window.console.warn = function () {
         AlloyLever.store.push({
-            type: 'warn',
+            logType: 'warn',
             logs: arguments
         })
+        warn.apply(console, arguments)
     }
 
     window.console.debug = function () {
         AlloyLever.store.push({
-            type: 'debug',
+            logType: 'debug',
             logs: arguments
         })
+        debug.apply(console, arguments)
     }
 
     window.console.error = function () {
         AlloyLever.store.push({
-            type: 'error',
+            logType: 'error',
             logs: arguments
         })
+        error.apply(console, arguments)
     }
 
     AlloyLever.vConsole = function(){
@@ -60,7 +71,10 @@
 
             for (; i < len; i++) {
                 var item = AlloyLever.store[i]
-                console[item.type].apply(console, item.logs)
+                //console[item.type].apply(console, item.logs)
+                //·ÀÖ¹¶þ´Î´òÓ¡
+                item.noOrigin = true
+                vConsole.pluginList.default.printLog(item)
             }
 
             vConsole.show()
@@ -97,6 +111,17 @@
             }
         })
 
+    }
+
+    window.onerror = function (msg, url, lineNo, columnNo, error) {
+        var string = msg.toLowerCase()
+        var substring = "script error"
+        if (string.indexOf(substring) > -1) {
+            console.error('Script Error: See Browser Console for Detail')
+        } else {
+            console.error(msg, url, lineNo, columnNo, error)
+        }
+        return false
     }
 
     return AlloyLever
