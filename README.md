@@ -11,7 +11,7 @@ npm install alloylever
 CDN地址下载下来使用:
 
 
-[https://unpkg.com/alloylever@0.3.0/alloy-lever.js](https://unpkg.com/alloylever@0.3.0/alloy-lever.js)
+[https://unpkg.com/alloylever@0.4.0/alloy-lever.js](https://unpkg.com/alloylever@0.4.0/alloy-lever.js)
 
 
 ## 使用指南
@@ -20,11 +20,11 @@ CDN地址下载下来使用:
 AlloyLever超小的体积，让你能在生产环境中使用vConsole。
 
 ```js
-AlloyLever.log('这是log信息')
-AlloyLever.info('这是info信息')
-AlloyLever.debug('这是debug信息')
-AlloyLever.warn('这是warn信息')
-AlloyLever.error('这是error信息')
+console.log('这是log信息')
+console.info('这是info信息')
+console.debug('这是debug信息')
+console.warn('这是warn信息')
+console.error('这是error信息')
 
 //入口。请点击这个DOM元素**6**次召唤神龙
 AlloyLever.entry('#vConsole')

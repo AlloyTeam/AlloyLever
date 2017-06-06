@@ -14,38 +14,38 @@
         root["AlloyLever"] = factory();
 })(this, function() {
     var AlloyLever = {}
-    AlloyLever.cdn = 'https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.1/vconsole.min.js'
+    AlloyLever.cdn = '//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js'
     AlloyLever.store = []
 
-    AlloyLever.log = function () {
+    window.console.log = function () {
         AlloyLever.store.push({
             type: 'log',
             logs: arguments
         })
-
     }
-    AlloyLever.info = function () {
+
+    window.console.info = function () {
         AlloyLever.store.push({
             type: 'info',
             logs: arguments
         })
     }
 
-    AlloyLever.warn = function () {
+    window.console.warn = function () {
         AlloyLever.store.push({
             type: 'warn',
             logs: arguments
         })
     }
 
-    AlloyLever.debug = function () {
+    window.console.debug = function () {
         AlloyLever.store.push({
             type: 'debug',
             logs: arguments
         })
     }
 
-    AlloyLever.error = function () {
+    window.console.error = function () {
         AlloyLever.store.push({
             type: 'error',
             logs: arguments
