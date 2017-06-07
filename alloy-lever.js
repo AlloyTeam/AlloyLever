@@ -1,5 +1,5 @@
-?/*!
- *  AlloyLever v0.5.0 By dntzhang
+/*!
+ *  AlloyLever v0.5.1 By dntzhang
  *  Github: https://github.com/AlloyTeam/AlloyLever
  *  MIT Licensed.
  */
@@ -72,7 +72,6 @@
             for (; i < len; i++) {
                 var item = AlloyLever.store[i]
                 //console[item.type].apply(console, item.logs)
-                //·ÀÖ¹¶þ´Î´òÓ¡
                 item.noOrigin = true
                 vConsole.pluginList.default.printLog(item)
             }
