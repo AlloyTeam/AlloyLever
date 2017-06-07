@@ -11,6 +11,7 @@
 
     <script src="alloy-lever.js"></script>
     <button id="entry">点击我6次加载vConsole并显示打印的信息</button>
+    <button id="entry2">点击我6次加载vConsole并显示打印的信息</button>
     <pre>
     <code>
         console.log('这是log信息')
@@ -21,6 +22,7 @@
 
         //入口。请点击这个DOM元素6次召唤神龙。一般会使用首屏的加载中作为机关入口
         AlloyLever.entry('#entry')
+        AlloyLever.entry('#entry2')
     </code>
     </pre>
     <script>
@@ -32,7 +34,8 @@
 
         //入口
         AlloyLever.entry('#entry')
-
+        //也可以埋在多个入口
+        AlloyLever.entry('#entry2')
     </script>
 </body>
 </html>
