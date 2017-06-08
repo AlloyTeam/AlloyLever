@@ -10,20 +10,39 @@
     </a>
 
     <script src="alloy-lever.js"></script>
+    <script>
+        AlloyLever.config({
+            cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+            reportUrl: "//a.qq.com",
+            reportPrefix: 'abc',
+            reportKey: 'msg',
+            otherReport: {
+                uin: 100000
+            },
+            entry:"#entry"
+        })
+
+    </script>
     <button id="entry">点击我6次加载vConsole并显示打印的信息</button>
-    <button id="entry2">点击我6次加载vConsole并显示打印的信息</button>
     <pre>
     <code>
+        AlloyLever.config({
+            cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+            reportUrl: "//a.qq.com",
+            reportPrefix: 'abc',
+            reportKey: 'msg',
+            otherReport: {
+                uin: 491862102
+            },
+            entry:"#entry"
+        })
+
         console.log('这是log信息')
         console.info('这是info信息')
         console.debug('这是debug信息')
         console.warn('这是warn信息')
         console.error('这是error信息')
 
-        //入口。请点击这个DOM元素6次召唤神龙。
-        AlloyLever.entry('#entry')
-        //你可以设置多个机关入口召唤神龙
-        AlloyLever.entry('#entry2')
     </code>
     </pre>
     <script>
@@ -34,9 +53,9 @@
         console.error('这是error信息')
 
         //入口
-        AlloyLever.entry('#entry')
+        //AlloyLever.entry('#entry')
         //也可以埋在多个入口
-        AlloyLever.entry('#entry2')
+        //AlloyLever.entry('#entry2')
     </script>
 </body>
 </html>

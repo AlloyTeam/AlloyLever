@@ -14,7 +14,15 @@
         root["AlloyLever"] = factory();
 })(this, function() {
     var AlloyLever = {}
-    AlloyLever.cdn = '//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js'
+    AlloyLever.settings = {
+        cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+        reportUrl: null,
+        reportPrefix: '',
+        reportKey: 'msg',
+        otherReport: null,
+        entry: null
+    }
+
     AlloyLever.store = []
 
     var log = window.console.log,
@@ -63,8 +71,23 @@
         error.apply(console, arguments)
     }
 
-    AlloyLever.vConsole = function(){
-        loadScript(AlloyLever.cdn, function() {
+    AlloyLever.logs = []
+    AlloyLever.config = function(config){
+        for(var i in config){
+            if(config.hasOwnProperty(i)){
+                AlloyLever.settings[i] = config[i]
+            }
+        }
+
+        if(config.entry){
+            document.addEventListener("DOMContentLoaded", function() {
+                AlloyLever.entry(config.entry)
+            });
+        }
+    }
+
+    AlloyLever.vConsole = function(show){
+        loadScript(AlloyLever.settings.cdn, function() {
 
             var i = 0,
                 len = AlloyLever.store.length
@@ -77,17 +100,81 @@
                 vConsole.pluginList.default.printLog(item)
             }
 
-            try {
-                vConsole.show()
-            }catch(e) {
+            if(show) {
+                try {
+                    vConsole.show()
+                } catch (e) {
 
+                }
+
+                window.addEventListener('load', function () {
+                    vConsole.show()
+                })
             }
-
-            window.addEventListener('load', function () {
-                vConsole.show()
-            })
-
         })
+    }
+
+    AlloyLever.entry = function(selector) {
+        var count = 0
+        document.querySelector(selector).addEventListener('click', function () {
+            count++
+            if (count > 5) {
+                count = -10000
+                AlloyLever.vConsole(true)
+            }
+        })
+    }
+
+    window.onerror = function(msg, url, line, col, error) {
+        var newMsg = msg;
+
+        if (error && error.stack) {
+            newMsg = processStackMsg(error);
+        }
+
+        if (isOBJByType(newMsg, "Event")) {
+            newMsg += newMsg.type ?
+                ("--" + newMsg.type + "--" + (newMsg.target ?
+                    (newMsg.target.tagName + "::" + newMsg.target.src) : "")) : "";
+        }
+
+        newMsg = (newMsg + "" || "").substr(0,500);
+
+        AlloyLever.logs.push({
+            msg: newMsg,
+            target: url,
+            rowNum: line,
+            colNum: col
+        });
+
+        if (msg.toLowerCase().indexOf('script error') > -1) {
+            console.error('Script Error: See Browser Console for Detail')
+        } else {
+            console.error(newMsg)
+        }
+
+        var ss = AlloyLever.settings;
+        if(ss.reportUrl) {
+            var src = ss.reportUrl + '?' + ss.reportKey + '='+( ss.reportPrefix?('[' + ss.reportPrefix +']'):'')+ newMsg+'&t='+new Date().getTime()
+            if(ss.otherReport) {
+                for (var i in ss.otherReport) {
+                    if (ss.otherReport.hasOwnProperty(i)) {
+                        src += '&' + i + '=' + ss.otherReport[i]
+                    }
+                }
+            }
+            new Image().src = src
+        }
+    }
+
+    var parameter = getParameter('vconsole')
+
+    if(parameter) {
+        if (parameter === 'show') {
+            AlloyLever.vConsole(true)
+        } else {
+            AlloyLever.vConsole(false)
+        }
     }
 
     function loadScript(src, callback){
@@ -110,28 +197,11 @@
         t.parentNode.insertBefore(s, t);
     }
 
-    AlloyLever.entry = function(selector) {
-        var count = 0
-        document.querySelector(selector).addEventListener('click', function () {
-            count++
-            if (count > 5) {
-                count = -10000
-                AlloyLever.vConsole()
-            }
-        })
-
-    }
-
-     function getParameter(n) {
+    function getParameter(n) {
         var m = window.location.hash.match(new RegExp('(?:#|&)' + n + '=([^&]*)(&|$)')),
             result = !m ? '' : decodeURIComponent(m[1]);
         return result ||getParameterByName(n);
     };
-
-    if(getParameter('vconsole')==='vconsole') {
-        AlloyLever.vConsole()
-    }
-
 
     function getParameterByName(name, url) {
         if (!url) url = window.location.href;
@@ -143,16 +213,37 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    window.onerror = function (msg, url, lineNo, columnNo, error) {
-        var string = msg.toLowerCase()
-        var substring = "script error"
-        if (string.indexOf(substring) > -1) {
-            console.error('Script Error: See Browser Console for Detail')
-        } else {
-            console.error(msg, url, lineNo, columnNo, error)
-        }
-        return false
+    function  isOBJByType(o, type) {
+        return Object.prototype.toString.call(o) === "[object " + (type || "Object") + "]";
     }
+
+    function processStackMsg (error) {
+        var stack = error.stack
+            .replace(/\n/gi, "")
+            .split(/\bat\b/)
+            .slice(0, 9)
+            .join("@")
+            .replace(/\?[^:]+/gi, "");
+        var msg = error.toString();
+        if (stack.indexOf(msg) < 0) {
+            stack = msg + "@" + stack;
+        }
+        return stack;
+    }
+
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+        if(arr=document.cookie.match(reg))
+
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+    AlloyLever.getCookie = getCookie
+    AlloyLever.getParameter= getParameter
+    AlloyLever.loadScript = loadScript
 
     return AlloyLever
 });

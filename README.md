@@ -1,9 +1,15 @@
 ﻿## AlloyLever 
 
-让你在生产环境轻松使用 [vConsole](https://github.com/WechatFE/vConsole)， 方便定位问题。
+错误监控上报，用户问题定位利器。
 
+* 支持错误监控和上报
+* 支持 [vConsole](https://github.com/WechatFE/vConsole)错误展示
+* 支持开发阶段使用 [vConsole](https://github.com/WechatFE/vConsole)
+* 支持生产环境机关拉取 [vConsole](https://github.com/WechatFE/vConsole)
 * 支持预埋机关唤起
 * 支持url带参数唤起
+
+url带参数唤起有两个目的，第一是方便网站开发过程中显示vConsole面板，第二是发给投诉反馈网站错误的用户显示vConsole面板用于定位错误。
 
 ## 安装
 
@@ -13,49 +19,51 @@ npm install alloylever
 
 CDN地址下载下来使用:
 
-
 [https://unpkg.com/alloylever@0.6.0/alloy-lever.js](https://unpkg.com/alloylever@0.6.0/alloy-lever.js)
-
 
 ## 使用指南
 
-[vConsole](https://github.com/WechatFE/vConsole) 是一款非常强大的调试工具，但是由于其体积问题不可能在生产环境加载该脚本。
-AlloyLever超小的体积，通过机关触发拉取vConsole代码，让你能在生产环境中使用vConsole。
-
 ```js
-console.log('这是log信息')
-console.info('这是info信息')
-console.debug('这是debug信息')
-console.warn('这是warn信息')
-console.error('这是error信息')
-
-//入口。请点击这个DOM元素**6**次召唤神龙
-AlloyLever.entry('#entry')
-//你可以设置多个机关入口召唤神龙
-AlloyLever.entry('#entry2')
+AlloyLever.config({
+    cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',  //vconsole的CDN地址
+    reportUrl: "//a.qq.com",  //错误上报地址
+    reportPrefix: 'abc',    //错误上报msg前缀，一般用户标识业务类型
+    reportKey: 'msg',        //错误上报msg前缀的key，用户上报系统接收存储msg
+    otherReport: {              //需要上报的其他信息
+        uin: 491862102
+    },
+    entry:"#entry"          //请点击这个DOM元素6次召唤vConsole。//你可以通过AlloyLever.entry('#entry2')设置多个机关入口召唤神龙
+})
 ```
 
-你也可以重写`AlloyLever.entry`定义你的唤起方式，默认的方式你点击6次DOM元素。一般我们在项目里会把页面正中间的**加载中**的div作为召唤vConsole机关。
-
-## 错误监控
-
-AlloyLever会监听window.onerror并把错误信息保存下来，等召唤到vConsole再一并显示出来。如果你的项目代码里已经监听下window.onerror，请在对应的回调函数里面执行`console.error`，等召唤到vConsole会显示在里面。
+AlloyLever会监听`window.onerror`并把错误信息保存下来，并且上报到reportUrl，你也可以召唤到vConsole并显示出来错误和相关日志。
 
 ## url唤起vConsole
 
-只要你的页面引用了AlloyLever，你只需要在你的url里带上 vconsole=vconsole 就能显示vConsole面板。如:
+只要你的页面引用了AlloyLever，你只需要在你的url里带上 vconsole=show 就能显示vConsole面板。如:
 
 ```
-http://localhost:63342/AlloyLever/index.html?vconsole=vconsole
-或者
-http://localhost:63342/AlloyLever/index.html#vconsole=vconsole
+//加载并显示log面板
+http://localhost:63342/AlloyLever/index.html?vconsole=show
+//加载但不显示log面板
+http://localhost:63342/AlloyLever/index.html?vconsole=hide
+//不加载vConsole脚本
+http://localhost:63342/AlloyLever/index.html
 ```
 
-这里只需要发url发给用户，让用户打开便可。
+这些url的作用很好理解:
+
+* 要开发阶段用于调试
+* 发给投诉的用户打开带有vconsole=show的url
 
 ## 在线演示
 
-[https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
+* [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=show](https://alloyteam.github.io/AlloyLever/?vconsole=show)
+
+## QQ交流群491862102
+
+![](http://images2015.cnblogs.com/blog/105416/201706/105416-20170608111929012-1329379940.png)
 
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
