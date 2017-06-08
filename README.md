@@ -2,6 +2,9 @@
 
 让你在生产环境轻松使用 [vConsole](https://github.com/WechatFE/vConsole)， 方便定位问题。
 
+* 支持预埋机关唤起
+* 支持url带参数唤起
+
 ## 安装
 
 ```
@@ -37,6 +40,18 @@ AlloyLever.entry('#entry2')
 ## 错误监控
 
 AlloyLever会监听window.onerror并把错误信息保存下来，等召唤到vConsole再一并显示出来。如果你的项目代码里已经监听下window.onerror，请在对应的回调函数里面执行`console.error`，等召唤到vConsole会显示在里面。
+
+## url唤起vConsole
+
+只要你的页面引用了AlloyLever，你只需要在你的url里带上 vconsole=vconsole 就能显示vConsole面板。如:
+
+```
+http://localhost:63342/AlloyLever/index.html?vconsole=vconsole
+或者
+http://localhost:63342/AlloyLever/index.html#vconsole=vconsole
+```
+
+这里只需要发url发给用户，让用户打开便可。
 
 ## 在线演示
 
