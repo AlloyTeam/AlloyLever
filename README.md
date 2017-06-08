@@ -1,6 +1,6 @@
 ﻿## AlloyLever 
 
-错误监控上报，用户问题定位利器。
+开发调试发布，错误监控上报，用户问题定位利器。
 
 * 支持错误监控和上报
 * 支持 [vConsole](https://github.com/WechatFE/vConsole)错误展示
