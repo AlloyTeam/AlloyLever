@@ -60,6 +60,7 @@ http://localhost:63342/AlloyLever/index.html
 
 * [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
 * [https://alloyteam.github.io/AlloyLever/?vconsole=show](https://alloyteam.github.io/AlloyLever/?vconsole=show)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=hide](https://alloyteam.github.io/AlloyLever/?vconsole=hide)
 
 ## QQ交流群491862102
 
