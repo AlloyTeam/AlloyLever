@@ -115,14 +115,17 @@
     }
 
     AlloyLever.entry = function(selector) {
-        var count = 0
-        document.querySelector(selector).addEventListener('click', function () {
-            count++
-            if (count > 5) {
-                count = -10000
-                AlloyLever.vConsole(true)
-            }
-        })
+        var count = 0,
+            entry =document.querySelector(selector)
+        if(entry) {
+            entry.addEventListener('click', function () {
+                count++
+                if (count > 5) {
+                    count = -10000
+                    AlloyLever.vConsole(true)
+                }
+            })
+        }
     }
 
     window.onerror = function(msg, url, line, col, error) {

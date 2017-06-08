@@ -1,29 +1,255 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>AlloyLever - 开发调试发布，错误监控上报，用户问题定位利器</title>
+    <link rel="shortcut icon" href="asset/curvejs.ico">
+    <style>
+        html,body{
+            padding:0;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas{
+            padding:0;
+            margin: 0;
+            border: 0;
+        }
+
+        #container{
+            text-align: center;
+        }
+    </style>
+
+    <style>
+        body {
+            background-color: #1e1d23;
+            /*opacity: 0;*/
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /*body.ready { opacity: 1; }*/
+
+
+        .icon-text path,
+        .icon-text polygon {
+            /*opacity: 0;*/
+        }
+
+        .info {
+            text-align: center;
+        }
+
+        .description {
+            /*opacity: 0;*/
+            color: white;
+            margin-top: -20px;
+            font-size: 15px;
+        }
+
+        .links {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 700px) {
+            .links {
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+
+            }
+        }
+
+        .button {
+            /*opacity: 0;*/
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 180px;
+            height: 60px;
+            text-decoration: none;
+        }
+
+        .button.blue {
+            color: #5E89FB;
+        }
+
+        .button.green {
+            color: #18F38C;
+        }
+
+        .button.red {
+            color: #FF1461;
+        }
+
+        .button svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            stroke-width: 1;
+            fill: none;
+            fill-rule: evenodd;
+            stroke: currentColor;
+        }
+
+        .button.green svg {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .button path {
+            scale: .9;
+            transform-origin: 50% 50%;
+        }
+
+        .credits {
+            /*opacity: 0;*/
+            margin-top: 20px;
+            color: #979797;
+        }
+
+        .credits a {
+            position: relative;
+            color: currentColor;
+            text-decoration: none;
+        }
+
+        .credits a:after {
+            content: "";
+            /*opacity: 0;*/
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            border-bottom: 1px solid currentColor;
+            transition: opacity .75s ease;
+        }
+
+        /*.credits a:hover:after {
+          opacity: 1;
+          transition: opacity .25s ease;
+        }*/
+
+        .credits a,
+        .credits span {
+            transition: color .75s ease;
+        }
+
+        .credits a:hover,
+        .highlighted {
+            color: white;
+            transition: color .25s ease;
+        }
+
+        #container{
+            color: white;
+            height: 300px;
+            line-height: 300px;
+            font-size: 40px;
+            margin-top:100px ;
+        }
+
+        @media only screen and (max-width: 500px) {
+            #container canvas{
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <a href="https://github.com/AlloyTeam/AlloyLever" target="_blank" style="position: absolute;z-index: 1000; right: 0; top: 0;">
-        <img src="http://alloyteam.github.io/omi/asset/github.png" alt="" />
-    </a>
+<div id="container">
+    AlloyLever
+</div>
+<div class="info">
+    <p class="description">
+        开发调试发布，错误监控上报，用户问题定位利器。
+    </p>
+    <div class="links">
+        <a class="button blue" href="https://github.com/AlloyTeam/AlloyLever#使用指南" target="_blank">
+            <svg viewBox="0 0 180 60">
+                <path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
+            </svg>
+            <span>Docs</span>
+        </a>
+        <a class="button blue" id="entry" href="javascript:" >
+            <svg viewBox="0 0 180 60">
+                <path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
+            </svg>
+            <span>点我6次召唤神龙</span>
+        </a>
+        <a class="button green" href="https://github.com/AlloyTeam/AlloyLever" target="_blank">
+            <svg viewBox="0 0 180 60">
+                <path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
+            </svg>
+            <span>GitHub</span>
+        </a>
+    </div>
+    <p class="credits">
+        v<span class="version">1.0.0</span> © <span class="date">2017</span> AlloyTeam.com
+    </p>
+</div>
 
-    <script src="alloy-lever.js"></script>
-    <script>
-        AlloyLever.config({
-            cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
-            reportUrl: "//a.qq.com",
-            reportPrefix: 'abc',
-            reportKey: 'msg',
-            otherReport: {
-                uin: 100000
-            },
-            entry:"#entry"
-        })
 
-    </script>
-    <button id="entry">点击我6次加载vConsole并显示打印的信息</button>
+
+
+<script src="alloy-lever.js"></script>
+<script>
+    AlloyLever.config({
+        cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+        reportUrl: "//a.qq.com",
+        reportPrefix: 'abc',
+        reportKey: 'msg',
+        otherReport: {
+            uin: 100000
+        },
+        entry:"#entry"
+    })
+
+</script>
     <pre>
     <code>
         AlloyLever.config({
@@ -45,17 +271,17 @@
 
     </code>
     </pre>
-    <script>
-        console.log('这是log信息')
-        console.info('这是info信息')
-        console.debug('这是debug信息')
-        console.warn('这是warn信息')
-        console.error('这是error信息')
+<script>
+    console.log('这是log信息')
+    console.info('这是info信息')
+    console.debug('这是debug信息')
+    console.warn('这是warn信息')
+    console.error('这是error信息')
 
-        //入口
-        //AlloyLever.entry('#entry')
-        //也可以埋在多个入口
-        //AlloyLever.entry('#entry2')
-    </script>
+    //入口
+    //AlloyLever.entry('#entry')
+    //也可以埋在多个入口
+    //AlloyLever.entry('#entry2')
+</script>
 </body>
 </html>
