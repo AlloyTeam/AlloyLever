@@ -28,6 +28,8 @@ console.error('这是error信息')
 
 //入口。请点击这个DOM元素**6**次召唤神龙
 AlloyLever.entry('#entry')
+//你可以设置多个机关入口召唤神龙
+AlloyLever.entry('#entry2')
 ```
 
 你也可以重写`AlloyLever.entry`定义你的唤起方式，默认的方式你点击6次DOM元素。一般我们在项目里会把页面正中间的**加载中**的div作为召唤vConsole机关。
