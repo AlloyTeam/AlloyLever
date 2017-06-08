@@ -72,11 +72,21 @@
             for (; i < len; i++) {
                 var item = AlloyLever.store[i]
                 //console[item.type].apply(console, item.logs)
+                //prevent twice log
                 item.noOrigin = true
                 vConsole.pluginList.default.printLog(item)
             }
 
-            vConsole.show()
+            try {
+                vConsole.show()
+            }catch(e) {
+
+            }
+
+            window.addEventListener('load', function () {
+                vConsole.show()
+            })
+
         })
     }
 
@@ -110,6 +120,27 @@
             }
         })
 
+    }
+
+     function getParameter(n) {
+        var m = window.location.hash.match(new RegExp('(?:#|&)' + n + '=([^&]*)(&|$)')),
+            result = !m ? '' : decodeURIComponent(m[1]);
+        return result ||getParameterByName(n);
+    };
+
+    if(getParameter('vconsole')==='vconsole') {
+        AlloyLever.vConsole()
+    }
+
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
