@@ -53,7 +53,7 @@ http://localhost:63342/AlloyLever/index.html
 
 这些url的作用很好理解:
 
-* 要开发阶段用于调试
+* 开发阶段用于调试
 * 发给投诉的用户打开带有vconsole=show的url
 
 ## 在线演示
