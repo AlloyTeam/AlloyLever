@@ -72,7 +72,7 @@ http://localhost:63342/AlloyLever/index.html
 
 ## AlloyLever 
 
-**1kb(gzip)** js library is used for development and debugging, bug monitoring and reporting, user problem locating tool.
+**1kb(gzip)** js library contains development debugging, error monitoring and reporting, user problem localization features.
 
 * support error monitoring and reporting
 * support for [vConsole] (https://github.com/WechatFE/vConsole) error display
