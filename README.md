@@ -78,8 +78,8 @@ http://localhost:63342/AlloyLever/index.html
 * support for [vConsole](https://github.com/WechatFE/vConsole) error display
 * support the development phase by using [vConsole](https://github.com/WechatFE/vConsole)
 * support the production environment authorities to pull [vConsole](https://github.com/WechatFE/vConsole)
-* support for buried organs to evoke
-* supports URL band parameter arousal
+* support DOM evokes vConsole
+* supports url evokes vConsole
 
 There are two purposes for URL parameter arousal, the first is to display the vConsole panel during the website development process, and the second is to send a complaint to the feedback site. The wrong user displays the vConsole panel for locating errors.
 
