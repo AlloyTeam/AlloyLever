@@ -128,5 +128,11 @@ The role of these URL is well understood:
 * development phase for debugging
 * open the URL with vconsole=show to the user who has complained
 
+## DEMO
+
+* [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=show](https://alloyteam.github.io/AlloyLever/?vconsole=show)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=hide](https://alloyteam.github.io/AlloyLever/?vconsole=hide)
+
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
