@@ -5,13 +5,13 @@
  */
 ;(function (root, factory) {
     if(typeof exports === 'object' && typeof module === 'object')
-        module.exports = factory();
+        module.exports = factory()
     else if(typeof define === 'function' && define.amd)
-        define([], factory);
+        define([], factory)
     else if(typeof exports === 'object')
-        exports["AlloyLever"] = factory();
+        exports["AlloyLever"] = factory()
     else
-        root["AlloyLever"] = factory();
+        root["AlloyLever"] = factory()
 })(this, function() {
     var AlloyLever = {}
     AlloyLever.settings = {
@@ -82,7 +82,7 @@
         if(config.entry){
             document.addEventListener("DOMContentLoaded", function() {
                 AlloyLever.entry(config.entry)
-            });
+            })
         }
     }
 
@@ -129,26 +129,26 @@
     }
 
     window.onerror = function(msg, url, line, col, error) {
-        var newMsg = msg;
+        var newMsg = msg
 
         if (error && error.stack) {
-            newMsg = processStackMsg(error);
+            newMsg = processStackMsg(error)
         }
 
         if (isOBJByType(newMsg, "Event")) {
             newMsg += newMsg.type ?
                 ("--" + newMsg.type + "--" + (newMsg.target ?
-                    (newMsg.target.tagName + "::" + newMsg.target.src) : "")) : "";
+                    (newMsg.target.tagName + "::" + newMsg.target.src) : "")) : ""
         }
 
-        newMsg = (newMsg + "" || "").substr(0,500);
+        newMsg = (newMsg + "" || "").substr(0,500)
 
         AlloyLever.logs.push({
             msg: newMsg,
             target: url,
             rowNum: line,
             colNum: col
-        });
+        })
 
         if (msg.toLowerCase().indexOf('script error') > -1) {
             console.error('Script Error: See Browser Console for Detail')
@@ -156,7 +156,7 @@
             console.error(newMsg)
         }
 
-        var ss = AlloyLever.settings;
+        var ss = AlloyLever.settings
         if(ss.reportUrl) {
             var src = ss.reportUrl + '?' + ss.reportKey + '='+( ss.reportPrefix?('[' + ss.reportPrefix +']'):'')+ newMsg+'&t='+new Date().getTime()
             if(ss.otherReport) {
@@ -183,41 +183,41 @@
     function loadScript(src, callback){
         var s,
             r,
-            t;
-        r = false;
-        s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = src;
+            t
+        r = false
+        s = document.createElement('script')
+        s.type = 'text/javascript'
+        s.src = src
         s.onload = s.onreadystatechange = function() {
             //console.log( this.readyState ); //uncomment this line to see which ready states are called.
             if ( !r && (!this.readyState || this.readyState == 'complete') )
             {
-                r = true;
-                callback();
+                r = true
+                callback()
             }
-        };
-        t = document.getElementsByTagName('script')[0];
-        t.parentNode.insertBefore(s, t);
+        }
+        t = document.getElementsByTagName('script')[0]
+        t.parentNode.insertBefore(s, t)
     }
 
     function getParameter(n) {
         var m = window.location.hash.match(new RegExp('(?:#|&)' + n + '=([^&]*)(&|$)')),
-            result = !m ? '' : decodeURIComponent(m[1]);
-        return result ||getParameterByName(n);
-    };
+            result = !m ? '' : decodeURIComponent(m[1])
+        return result ||getParameterByName(n)
+    }
 
     function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
+        if (!url) url = window.location.href
+        name = name.replace(/[\[\]]/g, "\\$&")
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+            results = regex.exec(url)
+        if (!results) return null
+        if (!results[2]) return ''
+        return decodeURIComponent(results[2].replace(/\+/g, " "))
     }
 
     function  isOBJByType(o, type) {
-        return Object.prototype.toString.call(o) === "[object " + (type || "Object") + "]";
+        return Object.prototype.toString.call(o) === "[object " + (type || "Object") + "]"
     }
 
     function processStackMsg (error) {
@@ -226,22 +226,21 @@
             .split(/\bat\b/)
             .slice(0, 9)
             .join("@")
-            .replace(/\?[^:]+/gi, "");
-        var msg = error.toString();
+            .replace(/\?[^:]+/gi, "")
+        var msg = error.toString()
         if (stack.indexOf(msg) < 0) {
-            stack = msg + "@" + stack;
+            stack = msg + "@" + stack
         }
-        return stack;
+        return stack
     }
 
     function getCookie(name){
-        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)")
 
         if(arr=document.cookie.match(reg))
-
-            return unescape(arr[2]);
+            return unescape(arr[2])
         else
-            return null;
+            return null
     }
 
     AlloyLever.getCookie = getCookie
