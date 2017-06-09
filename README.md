@@ -1,4 +1,70 @@
-﻿#### 中文 | [English](https://github.com/AlloyTeam/AlloyLever#english--中文)
+﻿#### English | [﻿中文](https://github.com/AlloyTeam/AlloyLever#中文--english)
+
+## AlloyLever 
+
+**1kb(gzip)** js library contains development debugging, error monitoring and reporting, user problem localization features.
+
+* support error monitoring and reporting
+* support for [vConsole](https://github.com/WechatFE/vConsole) error display
+* support the development phase by using [vConsole](https://github.com/WechatFE/vConsole)
+* support the production environment authorities to pull [vConsole](https://github.com/WechatFE/vConsole)
+* support DOM evokes vConsole
+* supports url evokes vConsole
+
+There are two purposes for URL parameter arousal, the first is to display the vConsole panel during the website development process, and the second is to send a complaint to the feedback site. The wrong user displays the vConsole panel for locating errors.
+
+## Install
+
+```
+npm install alloylever
+```
+
+or get js by the cdn address:
+
+[https://unpkg.com/alloylever@1.0.0/alloy-lever.js](https://unpkg.com/alloylever@1.0.0/alloy-lever.js)
+
+## Usage
+
+```js
+AlloyLever.config({
+    cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',  //vconsole CDN address
+    reportUrl: "//a.qq.com",  //Error reporting address
+    reportPrefix: 'qun',    //An error reporting msg prefix is generally used to differentiate business types
+    reportKey: 'msg',        //Error reporting msg prefix key, user reporting system receives storage msg
+    otherReport: {              //Other information to be reported
+        uin: 491862102
+    },
+    entry:"#entry"          //Please click on this DOM element to summon vConsole 6 times. You can use AlloyLever.entry('#entry2') add more entry
+})
+```
+
+AlloyLever will listen to `window.onerror` and save the error information, and report to reportUrl, you can also call vConsole and display errors and related logs.
+
+## URL evokes vConsole
+
+As long as your page references AlloyLever, you simply display the vConsole panel with the vconsole=show in your url. Such as:
+
+```
+//load and display the log panel
+http://localhost:63342/AlloyLever/index.html?vconsole=show
+//load but don't display the log panel
+http://localhost:63342/AlloyLever/index.html?vconsole=hide
+//don't load vConsole
+http://localhost:63342/AlloyLever/index.html
+```
+
+The role of these URL is well understood:
+
+* development phase for debugging
+* open the URL with vconsole=show to the user who has complained
+
+## DEMO
+
+* [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=show](https://alloyteam.github.io/AlloyLever/?vconsole=show)
+* [https://alloyteam.github.io/AlloyLever/?vconsole=hide](https://alloyteam.github.io/AlloyLever/?vconsole=hide)
+
+#### 中文 | [English](https://github.com/AlloyTeam/AlloyLever#english--中文)
 
 ## AlloyLever 
 
@@ -67,72 +133,6 @@ http://localhost:63342/AlloyLever/index.html
 ## QQ交流群491862102
 
 ![](http://images2015.cnblogs.com/blog/105416/201706/105416-20170608111929012-1329379940.png)
-
-#### English | [﻿中文](https://github.com/AlloyTeam/AlloyLever#中文--english)
-
-## AlloyLever 
-
-**1kb(gzip)** js library contains development debugging, error monitoring and reporting, user problem localization features.
-
-* support error monitoring and reporting
-* support for [vConsole](https://github.com/WechatFE/vConsole) error display
-* support the development phase by using [vConsole](https://github.com/WechatFE/vConsole)
-* support the production environment authorities to pull [vConsole](https://github.com/WechatFE/vConsole)
-* support DOM evokes vConsole
-* supports url evokes vConsole
-
-There are two purposes for URL parameter arousal, the first is to display the vConsole panel during the website development process, and the second is to send a complaint to the feedback site. The wrong user displays the vConsole panel for locating errors.
-
-## Install
-
-```
-npm install alloylever
-```
-
-or get js by the cdn address:
-
-[https://unpkg.com/alloylever@1.0.0/alloy-lever.js](https://unpkg.com/alloylever@1.0.0/alloy-lever.js)
-
-## Usage
-
-```js
-AlloyLever.config({
-    cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',  //vconsole CDN address
-    reportUrl: "//a.qq.com",  //Error reporting address
-    reportPrefix: 'qun',    //An error reporting msg prefix is generally used to differentiate business types
-    reportKey: 'msg',        //Error reporting msg prefix key, user reporting system receives storage msg
-    otherReport: {              //Other information to be reported
-        uin: 491862102
-    },
-    entry:"#entry"          //Please click on this DOM element to summon vConsole 6 times. You can use AlloyLever.entry('#entry2') add more entry
-})
-```
-
-AlloyLever will listen to `window.onerror` and save the error information, and report to reportUrl, you can also call vConsole and display errors and related logs.
-
-## URL evokes vConsole
-
-As long as your page references AlloyLever, you simply display the vConsole panel with the vconsole=show in your url. Such as:
-
-```
-//load and display the log panel
-http://localhost:63342/AlloyLever/index.html?vconsole=show
-//load but don't display the log panel
-http://localhost:63342/AlloyLever/index.html?vconsole=hide
-//don't load vConsole
-http://localhost:63342/AlloyLever/index.html
-```
-
-The role of these URL is well understood:
-
-* development phase for debugging
-* open the URL with vconsole=show to the user who has complained
-
-## DEMO
-
-* [https://alloyteam.github.io/AlloyLever/](https://alloyteam.github.io/AlloyLever/)
-* [https://alloyteam.github.io/AlloyLever/?vconsole=show](https://alloyteam.github.io/AlloyLever/?vconsole=show)
-* [https://alloyteam.github.io/AlloyLever/?vconsole=hide](https://alloyteam.github.io/AlloyLever/?vconsole=hide)
 
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
