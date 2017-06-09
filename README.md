@@ -115,9 +115,9 @@ AlloyLever will listen to `window.onerror` and save the error information, and r
 As long as your page references AlloyLever, you simply display the vConsole panel with the vconsole=show in your url. Such as:
 
 ```
-//Load and display the log panel
+//load and display the log panel
 http://localhost:63342/AlloyLever/index.html?vconsole=show
-//Loads but does not display the log panel
+//load but don't display the log panel
 http://localhost:63342/AlloyLever/index.html?vconsole=hide
 //don't load vConsole
 http://localhost:63342/AlloyLever/index.html
