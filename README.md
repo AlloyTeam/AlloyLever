@@ -75,9 +75,9 @@ http://localhost:63342/AlloyLever/index.html
 **1kb(gzip)** js library contains development debugging, error monitoring and reporting, user problem localization features.
 
 * support error monitoring and reporting
-* support for [vConsole] (https://github.com/WechatFE/vConsole) error display
-* support the development phase by using [vConsole] (https://github.com/WechatFE/vConsole)
-* support the production environment authorities to pull [vConsole] (https://github.com/WechatFE/vConsole)
+* support for [vConsole](https://github.com/WechatFE/vConsole) error display
+* support the development phase by using [vConsole](https://github.com/WechatFE/vConsole)
+* support the production environment authorities to pull [vConsole](https://github.com/WechatFE/vConsole)
 * support for buried organs to evoke
 * supports URL band parameter arousal
 
