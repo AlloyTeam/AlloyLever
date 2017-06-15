@@ -25,51 +25,19 @@
 
     AlloyLever.store = []
 
-    var log = window.console.log,
-        info = window.console.info,
-        warn = window.console.warn,
-        debug = window.console.debug,
-        error = window.console.error
+    var methodList = ['log', 'info', 'warn', 'debug', 'error'];
+    methodList.forEach(function(item) {
+        var method = console[item];
 
-    window.console.log = function () {
-        AlloyLever.store.push({
-            logType: 'log',
-            logs: arguments
-        })
-        log.apply(console, arguments)
-    }
+        console[item] = function() {
+            AlloyLever.store.push({
+                logType: item,
+                logs: arguments
+            });
 
-    window.console.info = function () {
-        AlloyLever.store.push({
-            logType: 'info',
-            logs: arguments
-        })
-        info.apply(console, arguments)
-    }
-
-    window.console.warn = function () {
-        AlloyLever.store.push({
-            logType: 'warn',
-            logs: arguments
-        })
-        warn.apply(console, arguments)
-    }
-
-    window.console.debug = function () {
-        AlloyLever.store.push({
-            logType: 'debug',
-            logs: arguments
-        })
-        debug.apply(console, arguments)
-    }
-
-    window.console.error = function () {
-        AlloyLever.store.push({
-            logType: 'error',
-            logs: arguments
-        })
-        error.apply(console, arguments)
-    }
+            method.apply(console, arguments);
+        }
+    });
 
     AlloyLever.logs = []
     AlloyLever.config = function(config){
