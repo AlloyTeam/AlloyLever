@@ -21,7 +21,7 @@ npm install alloylever
 
 or get js by the cdn address:
 
-[https://unpkg.com/alloylever@1.0.0/alloy-lever.js](https://unpkg.com/alloylever@1.0.0/alloy-lever.js)
+[https://unpkg.com/alloylever@1.0.1/alloy-lever.js](https://unpkg.com/alloylever@1.0.1/alloy-lever.js)
 
 ## Usage
 
@@ -87,7 +87,7 @@ npm install alloylever
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/alloylever@1.0.0/alloy-lever.js](https://unpkg.com/alloylever@1.0.0/alloy-lever.js)
+[https://unpkg.com/alloylever@1.0.1/alloy-lever.js](https://unpkg.com/alloylever@1.0.1/alloy-lever.js)
 
 ## 使用指南
 
