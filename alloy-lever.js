@@ -1,5 +1,5 @@
 /*!
- *  AlloyLever v1.0.1 By dntzhang
+ *  AlloyLever v1.0.2 By dntzhang
  *  Github: https://github.com/AlloyTeam/AlloyLever
  *  MIT Licensed.
  */
@@ -48,7 +48,7 @@
         }
 
         if(config.entry){
-            document.addEventListener("DOMContentLoaded", function() {
+            window.addEventListener('load', function() {
                 AlloyLever.entry(config.entry)
             })
         }

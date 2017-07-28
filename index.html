@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>AlloyLever - 1kb js library contains development debugging, error monitoring and reporting, user problem localization features</title>
 
+
+    <script src="alloy-lever.js"></script>
+    <script>
+        AlloyLever.config({
+            cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+            reportUrl: "//a.qq.com",
+            reportPrefix: 'abc',
+            reportKey: 'msg',
+            otherReport: {
+                uin: 100000
+            },
+            entry:"#entry"
+        })
+
+    </script>
     <style>
         html,body{
             padding:0;
@@ -234,27 +249,12 @@
         </a>
     </div>
     <p class="credits">
-        v<span class="version">1.0.0</span> © <span class="date">2017</span> AlloyTeam.com
+        v<span class="version">1.0.2</span> © <span class="date">2017</span> AlloyTeam.com
     </p>
 </div>
 
 
 
-
-<script src="alloy-lever.js"></script>
-<script>
-    AlloyLever.config({
-        cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
-        reportUrl: "//a.qq.com",
-        reportPrefix: 'abc',
-        reportKey: 'msg',
-        otherReport: {
-            uin: 100000
-        },
-        entry:"#entry"
-    })
-
-</script>
     <pre>
     <code>
         AlloyLever.config({
