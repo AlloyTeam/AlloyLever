@@ -126,7 +126,7 @@
 
         var ss = AlloyLever.settings
         if(ss.reportUrl) {
-            var src = ss.reportUrl + '?' + ss.reportKey + '='+( ss.reportPrefix?('[' + ss.reportPrefix +']'):'')+ newMsg+'&t='+new Date().getTime()
+            var src = ss.reportUrl + (ss.reportUrl.indexOf('?')>-1?'&':'?') + ss.reportKey + '='+( ss.reportPrefix?('[' + ss.reportPrefix +']'):'')+ newMsg+'&t='+new Date().getTime()
             if(ss.otherReport) {
                 for (var i in ss.otherReport) {
                     if (ss.otherReport.hasOwnProperty(i)) {
