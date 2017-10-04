@@ -90,9 +90,11 @@ There are two purposes for URL parameter arousal, the first is to display the vC
 npm install alloylever
 ```
 
-or get js by the cdn address:
+or include this in your html:
 
-[https://unpkg.com/alloylever@1.0.2/alloy-lever.js](https://unpkg.com/alloylever@1.0.2/alloy-lever.js)
+```html
+<script src="https://cdn.jsdelivr.net/npm/alloylever@1/alloy-lever.min.js"></script>
+```
 
 ## Usage
 
