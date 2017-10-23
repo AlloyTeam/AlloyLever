@@ -52,10 +52,28 @@
                 AlloyLever.entry(config.entry)
             })
         }
+
+        var parameter = getParameter('vconsole')
+
+        if(parameter) {
+            if (parameter === 'show') {
+                AlloyLever.vConsole(true)
+            } else {
+                AlloyLever.vConsole(false)
+            }
+        }
     }
 
     AlloyLever.vConsole = function(show){
         loadScript(AlloyLever.settings.cdn, function() {
+
+            //support vconsole3.0
+            if (typeof vConsole === 'undefined') {
+                vConsole = new VConsole({
+                    defaultPlugins: ['system', 'network', 'element', 'storage'],
+                    maxLogNumber: 5000
+                })
+            }
 
             var i = 0,
                 len = AlloyLever.store.length
@@ -138,15 +156,7 @@
         }
     }
 
-    var parameter = getParameter('vconsole')
 
-    if(parameter) {
-        if (parameter === 'show') {
-            AlloyLever.vConsole(true)
-        } else {
-            AlloyLever.vConsole(false)
-        }
-    }
 
     function loadScript(src, callback){
         var s,
