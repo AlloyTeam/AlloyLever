@@ -102,7 +102,7 @@
 
     AlloyLever.entry = function(selector) {
         var count = 0,
-            entry =document.querySelector(selector)
+            entry = document.querySelector(selector)
         if(entry) {
             entry.addEventListener('click', function () {
                 count++
