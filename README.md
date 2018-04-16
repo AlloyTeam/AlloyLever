@@ -21,7 +21,7 @@ npm install alloylever
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/alloylever@1.0.2/alloy-lever.js](https://unpkg.com/alloylever@1.0.2/alloy-lever.js)
+[https://unpkg.com/alloylever@1.0.3/alloy-lever.js](https://unpkg.com/alloylever@1.0.3/alloy-lever.js)
 
 ## 使用指南
 
@@ -90,11 +90,9 @@ There are two purposes for URL parameter arousal, the first is to display the vC
 npm install alloylever
 ```
 
-or include this in your html:
+or get it from cdn:
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/alloylever@1/alloy-lever.min.js"></script>
-```
+[https://unpkg.com/alloylever@1.0.3/alloy-lever.js](https://unpkg.com/alloylever@1.0.3/alloy-lever.js)
 
 ## Usage
 
