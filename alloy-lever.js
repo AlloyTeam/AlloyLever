@@ -1,5 +1,5 @@
 /*!
- *  AlloyLever v1.0.3 By dntzhang
+ *  AlloyLever v1.0.4 By dntzhang
  *  Github: https://github.com/AlloyTeam/AlloyLever
  *  MIT Licensed.
  */

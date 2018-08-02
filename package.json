@@ -1,6 +1,6 @@
 {
   "name": "alloylever",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "alloy-lever.js",
   "description": "Made you can use vConsole in the production environment.",
   "scripts": {
